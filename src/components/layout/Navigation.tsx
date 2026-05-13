@@ -28,15 +28,15 @@ export default function Navigation() {
           href="/"
           style={{ display: "flex", alignItems: "center", gap: 12, justifySelf: "start" }}
         >
-          <div
-            style={{
-              width: 36, height: 36, background: "var(--acc)", color: "var(--accInk)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 800,
-            }}
-          >
-            {siteConfig.short.charAt(0)}
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/android-chrome-512x512.png"
+            alt={`${siteConfig.name} logo`}
+            width={44}
+            height={44}
+            style={{ display: "block", width: 44, height: 44, objectFit: "contain" }}
+          />
+
           <span style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em" }}>
             {siteConfig.name}
           </span>
