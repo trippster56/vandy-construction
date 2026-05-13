@@ -1,0 +1,316 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ========================================
+   ROOT CSS VARIABLES
+   Base: white + #03adfc + slate text/muted.
+   ======================================== */
+
+:root {
+  --radius: 0.25rem;
+
+  /* Brand */
+  --primary: #2E3075;
+  --primary-foreground: #ffffff;
+  --primary-dark: #1F2154;
+  --brand-accent: #C0C4CE;
+
+  /* Neutrals */
+  --background: #ffffff;
+  --foreground: #0f1419;
+  --card: #ffffff;
+  --card-foreground: #0f1419;
+  --popover: #ffffff;
+  --popover-foreground: #0f1419;
+  --muted: #f5f7f8;
+  --muted-foreground: #677175;
+  --secondary: #f5f7f8;
+  --secondary-foreground: #677175;
+  --accent: #f5f7f8;
+  --accent-foreground: #0f1419;
+  --destructive: #ef4444;
+  --border: #e5e8ea;
+  --input: #e5e8ea;
+  --ring: #2E3075;
+
+  /* Chart */
+  --chart-1: #03adfc;
+  --chart-2: #0291d6;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+
+  /* Sidebar */
+  --sidebar: #f5f7f8;
+  --sidebar-foreground: #0f1419;
+  --sidebar-primary: #03adfc;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f7f8;
+  --sidebar-accent-foreground: #0f1419;
+  --sidebar-border: #e5e8ea;
+  --sidebar-ring: #03adfc;
+
+  /* Variant palette tokens (paper / ink / accent etc.) */
+  --p: #ffffff;
+  --ink: #0f1419;
+  --mu: #677175;
+  --line: #e5e8ea;
+  --acc: #2E3075;
+  --accInk: #ffffff;
+  --soft: #f5f7f8;
+
+  /* Type pair vars (registered in layout.tsx) */
+  --font-display: var(--font-display-bold);
+  --font-body: var(--font-body-bold);
+  --font-mono: var(--font-mono-bold);
+}
+
+/* Bold variant uses near-black borders. */
+.variant-bold {
+  --line: #0f1419;
+  --border: #0f1419;
+  --input: #0f1419;
+}
+
+/* ========================================
+   TAILWIND THEME — maps utilities to vars
+   ======================================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-primary-dark: var(--primary-dark);
+  --color-brand-accent: var(--brand-accent);
+  --color-surface: var(--muted);
+  --color-surface-hover: var(--secondary);
+  --color-text: var(--foreground);
+  --color-text-muted: var(--muted-foreground);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes bold-mq {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================================
+   NAV PILLS — plain text; rectangle on hover / active
+   ======================================== */
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background .15s ease, color .15s ease;
+}
+.nav-pill:hover {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.nav-pill[data-active="true"] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ========================================
+   LEGACY UTILITIES (used by /shop, /about, /blog, /services)
+   ======================================== */
+
+.hover-lift { transition: transform .3s ease, box-shadow .3s ease; }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+
+/* ========================================
+   PLACEHOLDER (striped slab)
+   ======================================== */
+
+.ph {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+.ph-corner {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+
+/* ========================================
+   VARIANT — BOLD / SOFT BRUTALIST
+   ======================================== */
+
+.bold-root { font-size: 16px; line-height: 1.5; }
+.bold-root h1, .bold-root h2, .bold-root h3 {
+  font-family: var(--font-display); font-weight: 700;
+  letter-spacing: -0.025em; line-height: 0.98;
+}
+.bold-root .mega { font-weight: 800; letter-spacing: -0.03em; }
+.bold-root .mono {
+  font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.bold-root .label {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px;
+  background: var(--ink); color: var(--p);
+  font-family: var(--font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.bold-root .label.acc { background: var(--acc); color: var(--accInk); }
+.bold-root .btn-primary {
+  display: inline-flex; align-items: center; gap: 12px; padding: 18px 26px;
+  background: var(--ink); color: var(--p);
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.08em; font-weight: 500; border: 2px solid var(--ink);
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.bold-root .btn-primary:hover {
+  background: var(--acc); border-color: var(--acc); color: var(--accInk);
+  transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink);
+}
+.bold-root .btn-ghost {
+  display: inline-flex; align-items: center; gap: 12px; padding: 18px 26px;
+  background: transparent; color: var(--ink); border: 2px solid var(--ink);
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.08em; font-weight: 500;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.bold-root .btn-ghost:hover {
+  background: var(--ink); color: var(--p);
+  transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--acc);
+}
+.bold-root .card {
+  border: 2px solid var(--ink); background: var(--p);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.bold-root .card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+.bold-root .card.acc:hover { box-shadow: 6px 6px 0 var(--acc); }
+.bold-root a { color: inherit; }
+.bold-root a.und { position: relative; }
+.bold-root a.und::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px;
+  background: currentColor; transform-origin: right; transform: scaleX(0);
+  transition: transform .3s ease;
+}
+.bold-root a.und:hover::after { transform: scaleX(1); transform-origin: left; }
+.bold-root .marquee { display: flex; gap: 60px; animation: bold-mq 38s linear infinite; }
+.bold-root .img-grow { overflow: hidden; }
+.bold-root .img-grow .ph { transition: transform .9s ease; }
+.bold-root .img-grow:hover .ph { transform: scale(1.05); }
+
+/* ========================================
+   FOCUS STATES (Accessibility)
+   ======================================== */
+
+button:focus-visible, input:focus-visible, textarea:focus-visible,
+select:focus-visible, a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   SCROLLBAR — neutral
+   ======================================== */
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f5f7f8; }
+::-webkit-scrollbar-thumb { background: #c8cdd0; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #a8aeb2; }
+
+/* ========================================
+   SHADCN BASE LAYER
+   ======================================== */
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; }
+}
