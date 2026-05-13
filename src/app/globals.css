@@ -142,11 +142,32 @@
    ======================================== */
 
 html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; }
 
 body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Process step cells: keep dividing borders, but flip orientation on stacks */
+.process-cell { border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+@media (min-width: 1024px) {
+  .process-cell { border-bottom: none; }
+  .process-cell[data-i="3"] { border-right: none; }
+}
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .process-cell[data-i="1"], .process-cell[data-i="3"] { border-right: none; }
+  .process-cell[data-i="2"], .process-cell[data-i="3"] { border-bottom: none; }
+}
+@media (max-width: 639.98px) {
+  .process-cell { border-right: none; }
+  .process-cell[data-i="3"] { border-bottom: none; }
+}
+
+/* Smaller nav pills on mobile */
+@media (max-width: 640px) {
+  .nav-pill { padding: 4px 8px; }
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }

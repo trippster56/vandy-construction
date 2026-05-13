@@ -8,34 +8,29 @@ interface PageHeaderProps {
 export default function PageHeader({ title, eyebrow, subtitle }: PageHeaderProps) {
   return (
     <section
-      className="bold-root"
-      style={{
-        padding: "40px 32px 32px",
-        borderTop: `2px solid var(--ink)`,
-        background: "var(--p)",
-      }}
+      className="bold-root px-4 sm:px-6 md:px-8 pt-8 sm:pt-10 pb-8"
+      style={{ borderTop: `2px solid var(--ink)`, background: "var(--p)" }}
     >
-      <div style={{ padding: "0 24px" }}>
+      <div className="px-2 sm:px-4 md:px-6">
         {eyebrow && (
-          <span className="label" style={{ display: "inline-block", marginBottom: 12 }}>
-            {eyebrow}
-          </span>
+          <span className="label inline-block mb-3">{eyebrow}</span>
         )}
         <h1
           className="mega"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: 64,
+            fontSize: "clamp(40px, 8vw, 64px)",
             lineHeight: 1.02,
             margin: 0,
             fontWeight: 800,
             letterSpacing: "-0.03em",
+            overflowWrap: "anywhere",
           }}
         >
           {title}
         </h1>
         {subtitle && (
-          <p style={{ fontSize: 16, color: "var(--mu)", margin: "14px 0 0", maxWidth: 640 }}>
+          <p className="text-base mt-3.5 m-0" style={{ color: "var(--mu)", maxWidth: 640 }}>
             {subtitle}
           </p>
         )}

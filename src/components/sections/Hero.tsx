@@ -5,12 +5,9 @@ import { siteConfig } from "@/lib/site-config";
 export default function Hero() {
   return (
     <section
-      className="bold-root"
+      className="bold-root relative overflow-hidden min-h-[520px] sm:min-h-[640px] md:min-h-[740px]"
       style={{
-        position: "relative",
-        minHeight: 740,
         borderBottom: `2px solid var(--ink)`,
-        overflow: "hidden",
         background: "var(--acc)",
         color: "var(--accInk)",
       }}
@@ -28,18 +25,8 @@ export default function Hero() {
           border: "2px dashed var(--accInk)",
         }}
       />
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          padding: 48,
-          minHeight: 740,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="relative z-[1] flex flex-col justify-between min-h-[520px] sm:min-h-[640px] md:min-h-[740px] p-6 sm:p-10 md:p-12">
+        <div className="flex flex-wrap gap-2 justify-between">
           <span
             className="label"
             style={{ background: "var(--accInk)", color: "var(--acc)", fontSize: 11 }}
@@ -54,18 +41,19 @@ export default function Hero() {
           <h1
             className="mega"
             style={{
-              fontSize: "clamp(64px, 12vw, 168px)",
+              fontSize: "clamp(48px, 13vw, 168px)",
               margin: 0,
               color: "var(--accInk)",
               letterSpacing: "-0.04em",
               lineHeight: 0.95,
+              overflowWrap: "anywhere",
             }}
           >
             {siteConfig.name}
           </h1>
           <p
             style={{
-              fontSize: "clamp(20px, 2.4vw, 32px)",
+              fontSize: "clamp(16px, 2.4vw, 32px)",
               margin: "20px 0 0",
               color: "var(--accInk)",
               opacity: 0.92,
@@ -75,7 +63,7 @@ export default function Hero() {
           >
             {siteConfig.tagline}
           </p>
-          <div style={{ display: "flex", gap: 16, marginTop: 36, flexWrap: "wrap" }}>
+          <div className="flex flex-wrap gap-3 sm:gap-4 mt-7 sm:mt-9">
             <Link
               href="/contact"
               className="btn-primary"
