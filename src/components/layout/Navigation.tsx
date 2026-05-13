@@ -18,16 +18,19 @@ export default function Navigation() {
         style={{
           borderBottom: `2px solid var(--ink)`,
           padding: "20px 32px",
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
-          justifyContent: "space-between",
           background: "var(--p)",
         }}
       >
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <Link
+          href="/"
+          style={{ display: "flex", alignItems: "center", gap: 12, justifySelf: "start" }}
+        >
           <div
             style={{
-              width: 36, height: 36, background: "var(--ink)", color: "var(--p)",
+              width: 36, height: 36, background: "var(--acc)", color: "var(--accInk)",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 800,
             }}
@@ -38,7 +41,7 @@ export default function Navigation() {
             {siteConfig.name}
           </span>
         </Link>
-        <nav style={{ display: "flex", gap: 4 }}>
+        <nav style={{ display: "flex", gap: 4, justifySelf: "center" }}>
           {nav.map((n) => {
             const active = isActive(pathname, n.href);
             return (
@@ -54,7 +57,7 @@ export default function Navigation() {
             );
           })}
         </nav>
-        <span aria-hidden style={{ width: 1 }} />
+        <span aria-hidden style={{ justifySelf: "end" }} />
       </header>
     </div>
   );

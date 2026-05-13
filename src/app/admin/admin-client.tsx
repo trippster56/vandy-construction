@@ -3,7 +3,7 @@
 import { useState } from "react";
 import {
   LayoutDashboard,
-  Package,
+  HardHat,
   FileText,
   MessageSquare,
   Eye,
@@ -15,7 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const sidebarLinks = [
   { icon: LayoutDashboard, label: "Dashboard" },
-  { icon: Package, label: "Products" },
+  { icon: HardHat, label: "Projects" },
   { icon: FileText, label: "Blog Posts" },
   { icon: MessageSquare, label: "Messages" },
   { icon: Settings, label: "Settings" },
@@ -34,7 +34,7 @@ export default function AdminClient({ stats }: AdminClientProps) {
   const [activeLink, setActiveLink] = useState("Dashboard");
 
   const statCards = [
-    { icon: Package, label: "Total Products", value: stats.products.toString(), trend: "From database", color: "bg-blue-500" },
+    { icon: HardHat, label: "Total Projects", value: stats.products.toString(), trend: "From database", color: "bg-blue-500" },
     { icon: FileText, label: "Blog Posts", value: stats.blogPosts.toString(), trend: "From database", color: "bg-green-500" },
     { icon: MessageSquare, label: "Messages", value: stats.messages.toString(), trend: "From database", color: "bg-purple-500" },
     { icon: Eye, label: "Orders", value: stats.orders.toString(), trend: "From database", color: "bg-orange-500" },

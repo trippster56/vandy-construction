@@ -28,7 +28,7 @@ export default function CTABanner() {
             >
               Contact us →
             </Link>
-            <Link href="/services" className="btn-ghost" style={{ color: "var(--accInk)", borderColor: "var(--accInk)" }}>
+            <Link href="/projects" className="btn-ghost" style={{ color: "var(--accInk)", borderColor: "var(--accInk)" }}>
               Our services
             </Link>
           </div>

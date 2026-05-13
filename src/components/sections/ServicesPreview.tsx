@@ -55,7 +55,7 @@ export default function ServicesPreview() {
                 </div>
                 <p style={{ fontSize: 15, margin: 0, opacity: 0.85, maxWidth: 400 }}>{s.body}</p>
                 <Link
-                  href="/services"
+                  href="/projects"
                   className="und mono"
                   style={{ display: "inline-block", marginTop: 20, fontWeight: 500, color: featured ? "var(--acc)" : "var(--ink)" }}
                 >
