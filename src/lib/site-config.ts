@@ -8,8 +8,8 @@ export const siteConfig = {
   // ── Branding ──────────────────────────
   name: "Vandy Construction",
   short: "Vandy",
-  established: 2010,
-  city: "City, ST",
+  established: "20XX",
+  city: "Great PeeDee",
   tagline: "Quality & Integrity",
   description:
     "Vandy Construction delivers residential and commercial construction services built on integrity and craftsmanship.",
