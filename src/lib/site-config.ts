@@ -25,7 +25,7 @@ export const siteConfig = {
   description:
     "Licensed and insured general contractor serving Florence, SC and surrounding counties.",
   url: "https://vandyconstruction.com",
-  logo: "/images/logo.png", // TODO: Josh — supply logo (PNG/JPG on hand)
+  logo: "/images/logo-mark.svg", // vectorized from Josh's logo (silver gradient); also logo-mark-mono.svg for single-color use
 
   // ── Colors (per questionnaire 3.2) ──
   colors: {

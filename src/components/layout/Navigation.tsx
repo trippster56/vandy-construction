@@ -100,9 +100,21 @@ function NavSafe() {
           gap: 16,
         }}
       >
-        <Link href="/" style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-          <span style={{ fontFamily: "var(--font-display)", fontSize: 22 }}>{siteConfig.short}</span>
-          <span style={{ fontFamily: "var(--font-display)", fontSize: 16, color: "var(--mu)" }}>&amp; Co.</span>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-mark.svg" alt="" aria-hidden="true" style={{ height: 36, width: "auto" }} />
+          <span
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 20,
+              fontWeight: 700,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              color: "var(--ink)",
+            }}
+          >
+            {siteConfig.short}
+          </span>
         </Link>
         <nav className="nav-links" style={{ display: "flex", gap: 4 }}>
           {nav.map((n) => {

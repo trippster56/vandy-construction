@@ -22,7 +22,9 @@ function SafeFooter() {
     >
       <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
         <div>
-          <div style={{ fontFamily: "var(--font-display)", fontSize: 28 }}>{siteConfig.name}</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-mark.svg" alt="" aria-hidden="true" style={{ height: 56, width: "auto", marginBottom: 16 }} />
+          <div style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700 }}>{siteConfig.name}</div>
           <p style={{ fontSize: 13, opacity: 0.6, marginTop: 12, maxWidth: 280 }}>{siteConfig.description}</p>
         </div>
         <FooterCol title="Visit" tone="safe-dark">
