@@ -99,6 +99,16 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             <div className="lg:col-span-3">
+              {siteConfig.jobtread.formEmbedUrl ? (
+                /* JobTread lead/estimate form — submissions auto-create leads in JobTread */
+                <iframe
+                  src={siteConfig.jobtread.formEmbedUrl}
+                  title="Request an estimate"
+                  className="w-full rounded-2xl border border-border bg-card"
+                  style={{ minHeight: 760 }}
+                  loading="lazy"
+                />
+              ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <input
                   type="text"
@@ -212,6 +222,7 @@ export default function ContactPage() {
                   {status === "sending" ? "Sending..." : "Send Message"}
                 </Button>
               </form>
+              )}
             </div>
 
             <div className="lg:col-span-2">
@@ -241,6 +252,18 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Location map (questionnaire 5.1: view location / map / hours) */}
+          <div className="mt-12 rounded-2xl overflow-hidden border border-border">
+            <iframe
+              title={`Map to ${siteConfig.name}`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(siteConfig.google.mapsEmbedQuery)}&output=embed`}
+              className="w-full"
+              style={{ height: 360, border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
