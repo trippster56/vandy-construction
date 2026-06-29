@@ -222,8 +222,8 @@ export default function ContactPage() {
                     const Icon = item.icon;
                     return (
                       <div key={index} className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Icon size={20} className="text-primary" />
+                        <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0">
+                          <Icon size={20} className="text-primary-foreground" />
                         </div>
                         <div>
                           <p className="text-sm font-medium text-foreground">{item.label}</p>

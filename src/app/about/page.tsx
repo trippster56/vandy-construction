@@ -77,8 +77,8 @@ export default function AboutPage() {
               return (
                 <Card key={index} className="text-center hover-lift">
                   <CardContent>
-                    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      <Icon size={28} className="text-primary" />
+                    <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <Icon size={28} className="text-primary-foreground" />
                     </div>
                     <h3 className="text-lg font-bold text-foreground mb-2">{value.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
