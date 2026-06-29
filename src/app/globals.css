@@ -75,21 +75,27 @@
    lighter panel tone; muted text + rules darken for contrast. */
 .ground-gray {
   --background: #9A9CA1;
-  --muted: #eef0f1;
+  /* cards/forms = light gray panels that lift off the gray ground
+     (not pure white, so they clearly differ from the white version) */
+  --card: #dfe1e4;
+  --card-foreground: #181F58;
+  --popover: #dfe1e4;
+  --popover-foreground: #181F58;
+  --muted: #e2e4e7;
   --muted-foreground: #3f4248;
-  --secondary: #eef0f1;
+  --secondary: #e2e4e7;
   --secondary-foreground: #3f4248;
-  --accent: #eef0f1;
-  --border: #c4c6cb;
-  --input: #c4c6cb;
-  --sidebar: #eef0f1;
-  --sidebar-accent: #eef0f1;
-  --sidebar-border: #c4c6cb;
+  --accent: #e2e4e7;
+  --border: #bfc1c6;
+  --input: #bfc1c6;
+  --sidebar: #e2e4e7;
+  --sidebar-accent: #e2e4e7;
+  --sidebar-border: #bfc1c6;
   /* variant palette ground */
   --p: #9A9CA1;
   --mu: #3f4248;
   --line: #7f8389;
-  --soft: #eef0f1;
+  --soft: #e2e4e7;
 }
 
 /* Variant root selectors swap fonts. */
