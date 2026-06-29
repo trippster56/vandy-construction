@@ -1,41 +1,46 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Raleway, Geist_Mono } from "next/font/google";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import FooterGate from "@/components/layout/FooterGate";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display-bold" });
-const plexSans = IBM_Plex_Sans({ weight: ["400", "500", "600", "700"], subsets: ["latin"], variable: "--font-body-bold" });
-const plexMono = IBM_Plex_Mono({ weight: ["400", "500"], subsets: ["latin"], variable: "--font-mono-bold" });
+// Raleway drives both headings (Bold) and body (SemiBold) per questionnaire 3.3.
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display-safe",
+});
+const ralewayBody = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body-safe",
+});
+// Mono kept for the small editorial eyebrow labels in the safe variant.
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono-safe" });
 
 export const metadata: Metadata = {
   title: siteConfig.seo.title,
   description: siteConfig.seo.description,
   keywords: siteConfig.seo.keywords,
-  // Favicon wiring — waiting on official file.
-  // manifest: "/site.webmanifest",
-  // icons: {
-  //   icon: [
-  //     { url: "/favicon.ico", sizes: "any" },
-  //     { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-  //     { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-  //   ],
-  //   apple: "/apple-touch-icon.png",
-  // },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const fontVars = [bricolage.variable, plexSans.variable, plexMono.variable].join(" ");
+  const fontVars = [raleway.variable, ralewayBody.variable, geistMono.variable].join(" ");
 
   return (
     <html lang="en" className={`${fontVars} h-full`}>
-      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased variant-bold">
+      <body
+        className={`min-h-screen flex flex-col bg-background text-foreground antialiased variant-${siteConfig.variant}`}
+      >
         <Navigation />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <FooterGate>
+          <Footer />
+        </FooterGate>
       </body>
     </html>
   );

@@ -1,72 +1,98 @@
 /**
  * ========================================
- * SITE CONFIGURATION — Vandy Construction
+ * SITE CONFIGURATION — Vandy Construction Company, LLC
  * ========================================
+ * Source of truth: client questionnaire (Josh).
+ * Update branded values here as Josh provides real details.
  */
 
-export const siteConfig = {
-  // ── Branding ──────────────────────────
-  name: "Vandy Construction",
-  short: "Vandy",
-  established: "20XX",
-  city: "Great PeeDee",
-  tagline: "Quality & Integrity",
-  description:
-    "Vandy Construction delivers residential and commercial construction services built on integrity and craftsmanship.",
-  url: "https://vandy-construction-v2.vercel.app",
-  logo: "/images/logo.png",
+export type Variant = "safe" | "character" | "bold";
+export type HeroLayout = "split" | "type-only" | "fullbleed";
 
-  // ── Colors (kept for legacy data layer compatibility) ──
+export const siteConfig = {
+  // ── Brand variant + hero ──────────────
+  // "safe" → editorial, restrained, photo-forward (matches his refs:
+  //   studio-mcgee.com, pillarhomes.com, gilbaneco.com)
+  variant: "safe" as Variant,
+  hero: "split" as HeroLayout,
+
+  // ── Branding ──────────────────────────
+  name: "Vandy Construction Company, LLC",
+  short: "Vandy Construction",
+  established: "20XX", // TODO: Josh — year established
+  city: "Florence, SC",
+  tagline: "Welcoming. Experienced. Trustworthy.",
+  description:
+    "Licensed and insured general contractor serving Florence, SC and surrounding counties.",
+  url: "https://vandyconstruction.com",
+  logo: "/images/logo.png", // TODO: Josh — supply logo (PNG/JPG on hand)
+
+  // ── Colors (per questionnaire 3.2) ──
   colors: {
-    primary: "#2E3075",
-    primaryDark: "#1F2154",
-    secondary: "#8B8FA0",
-    accent: "#C0C4CE",
+    primary: "#181F58", // Navy
+    primaryDark: "#10153D",
+    secondary: "#63666A", // Dark grey
+    accent: "#181F58",
     background: "#ffffff",
-    surface: "#f4f5f7",
-    surfaceHover: "#ebedf1",
-    text: "#0f1419",
-    textMuted: "#677175",
-    border: "#d1d5db",
+    surface: "#f3f4f6", // light gray surface tone (#9A9CA1 was too dark for page bg)
+    surfaceHover: "#e7e8ea",
+    text: "#181F58",
+    textMuted: "#63666A",
+    border: "#dcdee2",
   },
 
+  // ── Typography (Raleway per 3.3; driven by variant via CSS vars) ──
   fonts: {
     heading: "var(--font-display)",
     body: "var(--font-body)",
   },
 
-  // ── Navigation Links ──────────────────
+  // ── Navigation Links (per 4.1: Home, About, Services, Team, Testimonials, Contact) ──
   navLinks: [
     { label: "About", href: "/about" },
-    { label: "Projects", href: "/projects" },
+    { label: "Services", href: "/services" },
+    { label: "Team", href: "/team" },
+    { label: "Testimonials", href: "/testimonials" },
     { label: "Contact", href: "/contact" },
   ],
 
-  // ── Contact Info ──────────────────────
+  // ── Contact Info ──────────────────────  TODO: Josh — real NAP
   contact: {
     email: "hello@vandyconstruction.com",
     phone: "(555) 123-4567",
-    address: "123 Main Street · City, ST 12345",
+    address: "Florence, SC",
     hours: "Mon–Fri · 7am–5pm",
   },
 
+  // ── Social Links (per 7: Facebook only) ──
   socials: {
-    facebook: "https://facebook.com",
-    instagram: "https://instagram.com",
-    twitter: "https://twitter.com",
-    linkedin: "https://linkedin.com",
+    facebook: "https://facebook.com", // TODO: Josh — real Facebook page URL
   },
 
+  // ── Google Business Profile (map + "Leave a review") ──  TODO: Josh
+  google: {
+    reviewUrl: "", // Google review link for the "Leave a review" CTA
+    mapsEmbedQuery: "Vandy Construction Company, Florence, SC", // used for the map embed
+  },
+
+  // ── Email (Resend) ───────────────────
   email: {
     from: "onboarding@resend.dev",
     to: "hello@vandyconstruction.com",
   },
 
+  // ── SEO (per 8.2 target terms) ──
   seo: {
-    title: "Vandy Construction | Quality & Integrity",
+    title: "Vandy Construction Company | General Contractor in Florence, SC",
     description:
-      "Residential and commercial construction services built on integrity and craftsmanship.",
-    keywords: ["construction", "residential", "commercial", "general contractor"],
+      "Licensed and insured general contractor serving Florence, SC and surrounding counties. Welcoming, experienced, trustworthy.",
+    keywords: [
+      "contractor in florence sc",
+      "construction florence sc",
+      "general contractor florence sc",
+      "residential construction",
+      "commercial construction",
+    ],
   },
 };
 

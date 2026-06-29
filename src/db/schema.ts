@@ -69,6 +69,9 @@ export const contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   email: varchar("email", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }),
+  // Preferred way to be reached, per questionnaire 10.1: "email" | "text"
+  preferredContact: varchar("preferred_contact", { length: 20 }),
   subject: varchar("subject", { length: 255 }),
   message: text("message").notNull(),
   read: boolean("read").notNull().default(false),

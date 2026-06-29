@@ -19,6 +19,8 @@ export async function getAdminStats() {
 export async function saveContactMessage(data: {
   name: string;
   email: string;
+  phone?: string;
+  preferredContact?: string;
   subject?: string;
   message: string;
 }) {

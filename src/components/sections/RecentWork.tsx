@@ -1,71 +1,116 @@
 import Link from "next/link";
 import Placeholder from "@/components/ui/Placeholder";
-import { projects } from "@/data/projects";
+import { siteConfig } from "@/lib/site-config";
+import { HOME_WORK } from "@/data/home";
 
 export default function RecentWork() {
+  const v = siteConfig.variant;
+  if (v === "character") return <CharacterWork />;
+  if (v === "bold") return <BoldWork />;
+  return <SafeWork />;
+}
+
+function SafeWork() {
+  const tones = ["#c9bfa8", "#cdc3ac", "#d1c7b1"];
   return (
-    <section
-      className="bold-root px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-[100px]"
-      style={{ background: "var(--ink)", color: "var(--p)" }}
-    >
-      <div className="px-2 sm:px-4 md:px-6">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-5 mb-10 md:mb-14">
+    <section className="safe-root" style={{ padding: "100px 56px 120px", background: "var(--soft)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 48 }}>
+        <div>
+          <span className="section-label">Recent work</span>
+          <h2 style={{ fontSize: 56, lineHeight: 1.05, margin: "16px 0 0" }}>Recent work heading.</h2>
+        </div>
+        <Link href="/" className="btn-ghost">See all →</Link>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 32 }}>
+        <article className="img-hover">
+          <Placeholder label={HOME_WORK[0].title.toLowerCase()} h={520} tone={tones[0]} style={{ width: "100%" }} />
+          <div style={{ padding: "20px 4px 0", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+            <div>
+              <h3 style={{ fontSize: 24, margin: 0 }}>{HOME_WORK[0].title}</h3>
+              <p style={{ fontSize: 14, color: "var(--mu)", margin: "6px 0 0" }}>{HOME_WORK[0].caption}</p>
+            </div>
+            <span className="mono" style={{ color: "var(--mu)" }}>{HOME_WORK[0].meta}</span>
+          </div>
+        </article>
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          {[HOME_WORK[1], HOME_WORK[2]].map((w, i) => (
+            <article key={w.n} className="img-hover" style={{ display: "grid", gridTemplateRows: "240px auto", gap: 16 }}>
+              <Placeholder label={w.title.toLowerCase()} h={240} tone={tones[i + 1]} style={{ width: "100%" }} />
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                <div>
+                  <h3 style={{ fontSize: 20, margin: 0 }}>{w.title}</h3>
+                  <p style={{ fontSize: 13.5, color: "var(--mu)", margin: "4px 0 0" }}>{w.caption}</p>
+                </div>
+                <span className="mono" style={{ color: "var(--mu)", fontSize: 10 }}>{w.meta}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CharacterWork() {
+  const tones = ["#cdc1a3", "#d5c8aa", "#d0c4a8"];
+  return (
+    <section className="char-root" style={{ padding: "100px 56px 120px", background: "var(--soft)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 56 }}>
+        <div>
+          <span className="caption">Recent work</span>
+          <h2 style={{ fontSize: 64, lineHeight: 1, margin: "16px 0 0" }}>Recent work heading.</h2>
+        </div>
+        <Link href="/" className="btn-ghost">See all →</Link>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
+        {HOME_WORK.map((w, i) => (
+          <article
+            key={w.n}
+            className="card-tilt img-zoom"
+            style={{ background: "var(--p)", padding: 16, border: `1px solid var(--line)` }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
+              <span className="caption" style={{ color: "var(--acc)" }}>{w.n}</span>
+              <span className="caption">{w.meta}</span>
+            </div>
+            <Placeholder label={w.title.toLowerCase()} h={300} tone={tones[i]} style={{ width: "100%", marginBottom: 16 }} />
+            <h3 style={{ fontSize: 22, margin: "0 0 8px" }}>{w.title}</h3>
+            <p style={{ fontSize: 14, color: "var(--mu)", margin: 0 }}>{w.caption}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function BoldWork() {
+  const tones = ["#c4a988", "#cdb494", "#bda07f"];
+  return (
+    <section className="bold-root" style={{ padding: "100px 32px", background: "var(--ink)", color: "var(--p)" }}>
+      <div style={{ padding: "0 24px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 56 }}>
           <div>
             <span className="label acc">Recent work</span>
-            <h2
-              className="mega"
-              style={{
-                fontSize: "clamp(56px, 12vw, 132px)",
-                margin: "20px 0 0",
-                color: "var(--p)",
-                lineHeight: 0.98,
-              }}
-            >
-              Built recently,<br />
-              <span style={{ color: "var(--acc)" }}>on time.</span>
+            <h2 className="mega" style={{ fontSize: 132, margin: "20px 0 0", color: "var(--p)" }}>
+              Recent work<br />
+              <span style={{ color: "var(--acc)" }}>heading.</span>
             </h2>
           </div>
-          <Link
-            href="/projects"
-            className="btn-ghost self-start md:self-auto"
-            style={{ color: "var(--p)", borderColor: "var(--p)" }}
-          >
-            See all →
-          </Link>
+          <Link href="/" className="btn-ghost" style={{ color: "var(--p)", borderColor: "var(--p)" }}>See all →</Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {projects.slice(0, 3).map((p) => (
-            <Link
-              key={p.slug}
-              href={`/projects/${p.slug}`}
-              className="img-grow block"
-              style={{
-                border: `2px solid var(--p)`,
-                background: "var(--p)",
-                color: "var(--ink)",
-                textDecoration: "none",
-              }}
-            >
-              <div
-                className="flex justify-between px-4 py-3.5"
-                style={{ borderBottom: `2px solid var(--ink)` }}
-              >
-                <span className="mono font-semibold">{p.n}</span>
-                <span className="mono">{p.meta}</span>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+          {HOME_WORK.map((w, i) => (
+            <article key={w.n} className="img-grow" style={{ border: `2px solid var(--p)`, background: "var(--p)", color: "var(--ink)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", borderBottom: `2px solid var(--ink)` }}>
+                <span className="mono" style={{ fontWeight: 600 }}>{w.n}</span>
+                <span className="mono">{w.meta}</span>
               </div>
-              <Placeholder
-                label={p.title.toLowerCase()}
-                h={300}
-                tone={p.gallery[0]?.tone ?? "#c4a988"}
-                style={{ width: "100%" }}
-              />
-              <div className="p-5" style={{ borderTop: `2px solid var(--ink)` }}>
-                <h3 className="text-xl sm:text-2xl m-0 leading-tight">{p.title}</h3>
-                <p className="text-sm m-0 mt-2.5" style={{ color: "var(--mu)" }}>
-                  {p.caption}
-                </p>
+              <Placeholder label={w.title.toLowerCase()} h={300} tone={tones[i]} style={{ width: "100%" }} />
+              <div style={{ padding: 20, borderTop: `2px solid var(--ink)` }}>
+                <h3 style={{ fontSize: 24, margin: 0, lineHeight: 1.05 }}>{w.title}</h3>
+                <p style={{ fontSize: 14, margin: "10px 0 0", color: "var(--mu)" }}>{w.caption}</p>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
       </div>

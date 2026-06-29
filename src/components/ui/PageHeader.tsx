@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site-config";
+
 interface PageHeaderProps {
   title: string;
   eyebrow?: string;
@@ -6,31 +8,51 @@ interface PageHeaderProps {
 
 // Compact, left-aligned page heading — sits right under the nav.
 export default function PageHeader({ title, eyebrow, subtitle }: PageHeaderProps) {
+  const v = siteConfig.variant;
+  const rootClass = v === "character" ? "char-root" : v === "bold" ? "bold-root" : "safe-root";
+  const eyebrowClass = v === "bold" ? "label" : v === "character" ? "caption" : "section-label";
+
+  const padX = v === "bold" ? "32px" : "56px";
+  const padInner = v === "bold" ? "0 24px" : "0";
+  const borderTop =
+    v === "bold" ? `2px solid var(--ink)` : `1px solid var(--line)`;
+
+  const titleSize =
+    v === "bold" ? 64 : v === "character" ? 56 : 48;
+  const titleWeight =
+    v === "bold" ? 800 : v === "character" ? 500 : 400;
+  const titleClassName = v === "bold" ? "mega" : undefined;
+
   return (
     <section
-      className="bold-root px-4 sm:px-6 md:px-8 pt-8 sm:pt-10 pb-8"
-      style={{ borderTop: `2px solid var(--ink)`, background: "var(--p)" }}
+      className={rootClass}
+      style={{
+        padding: `40px ${padX} 32px`,
+        borderTop,
+        background: "var(--p)",
+      }}
     >
-      <div className="px-2 sm:px-4 md:px-6">
+      <div style={{ padding: padInner }}>
         {eyebrow && (
-          <span className="label inline-block mb-3">{eyebrow}</span>
+          <span className={eyebrowClass} style={{ display: "inline-block", marginBottom: 12 }}>
+            {eyebrow}
+          </span>
         )}
         <h1
-          className="mega"
+          className={titleClassName}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(40px, 8vw, 64px)",
+            fontSize: titleSize,
             lineHeight: 1.02,
             margin: 0,
-            fontWeight: 800,
-            letterSpacing: "-0.03em",
-            overflowWrap: "anywhere",
+            fontWeight: titleWeight,
+            letterSpacing: v === "bold" ? "-0.03em" : "-0.015em",
           }}
         >
           {title}
         </h1>
         {subtitle && (
-          <p className="text-base mt-3.5 m-0" style={{ color: "var(--mu)", maxWidth: 640 }}>
+          <p style={{ fontSize: 16, color: "var(--mu)", margin: "14px 0 0", maxWidth: 640 }}>
             {subtitle}
           </p>
         )}

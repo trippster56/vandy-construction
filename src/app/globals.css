@@ -6,73 +6,87 @@
 
 /* ========================================
    ROOT CSS VARIABLES
-   Base: white + #03adfc + slate text/muted.
+   Base: white + #181F58 + slate text/muted.
    ======================================== */
 
 :root {
   --radius: 0.25rem;
 
   /* Brand */
-  --primary: #2E3075;
+  --primary: #181F58;
   --primary-foreground: #ffffff;
-  --primary-dark: #1F2154;
-  --brand-accent: #C0C4CE;
+  --primary-dark: #10153D;
+  --brand-accent: #181F58;
 
   /* Neutrals */
   --background: #ffffff;
-  --foreground: #0f1419;
+  --foreground: #181F58;
   --card: #ffffff;
-  --card-foreground: #0f1419;
+  --card-foreground: #181F58;
   --popover: #ffffff;
-  --popover-foreground: #0f1419;
+  --popover-foreground: #181F58;
   --muted: #f5f7f8;
-  --muted-foreground: #677175;
+  --muted-foreground: #63666A;
   --secondary: #f5f7f8;
-  --secondary-foreground: #677175;
+  --secondary-foreground: #63666A;
   --accent: #f5f7f8;
-  --accent-foreground: #0f1419;
+  --accent-foreground: #181F58;
   --destructive: #ef4444;
   --border: #e5e8ea;
   --input: #e5e8ea;
-  --ring: #2E3075;
+  --ring: #181F58;
 
   /* Chart */
-  --chart-1: #03adfc;
-  --chart-2: #0291d6;
+  --chart-1: #181F58;
+  --chart-2: #10153D;
   --chart-3: #10b981;
   --chart-4: #f59e0b;
   --chart-5: #ef4444;
 
   /* Sidebar */
   --sidebar: #f5f7f8;
-  --sidebar-foreground: #0f1419;
-  --sidebar-primary: #03adfc;
+  --sidebar-foreground: #181F58;
+  --sidebar-primary: #181F58;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f5f7f8;
-  --sidebar-accent-foreground: #0f1419;
+  --sidebar-accent-foreground: #181F58;
   --sidebar-border: #e5e8ea;
-  --sidebar-ring: #03adfc;
+  --sidebar-ring: #181F58;
 
   /* Variant palette tokens (paper / ink / accent etc.) */
   --p: #ffffff;
-  --ink: #0f1419;
-  --mu: #677175;
+  --ink: #181F58;
+  --mu: #63666A;
   --line: #e5e8ea;
-  --acc: #2E3075;
+  --acc: #181F58;
   --accInk: #ffffff;
   --soft: #f5f7f8;
 
-  /* Type pair vars (registered in layout.tsx) */
+  /* Type pair vars (each font is registered in layout.tsx) */
+  --font-display: var(--font-display-safe);
+  --font-body: var(--font-body-safe);
+  --font-mono: var(--font-mono-safe);
+}
+
+/* Variant root selectors swap fonts. */
+.variant-safe {
+  --font-display: var(--font-display-safe);
+  --font-body: var(--font-body-safe);
+  --font-mono: var(--font-mono-safe);
+}
+.variant-character {
+  --font-display: var(--font-display-character);
+  --font-body: var(--font-body-character);
+  --font-mono: var(--font-mono-character);
+}
+.variant-bold {
   --font-display: var(--font-display-bold);
   --font-body: var(--font-body-bold);
   --font-mono: var(--font-mono-bold);
-}
-
-/* Bold variant uses near-black borders. */
-.variant-bold {
-  --line: #0f1419;
-  --border: #0f1419;
-  --input: #0f1419;
+  /* Hard near-black borders are core to the bold direction. */
+  --line: #181F58;
+  --border: #181F58;
+  --input: #181F58;
 }
 
 /* ========================================
@@ -142,32 +156,11 @@
    ======================================== */
 
 html { scroll-behavior: smooth; }
-html, body { overflow-x: hidden; }
 
 body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Process step cells: keep dividing borders, but flip orientation on stacks */
-.process-cell { border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
-@media (min-width: 1024px) {
-  .process-cell { border-bottom: none; }
-  .process-cell[data-i="3"] { border-right: none; }
-}
-@media (min-width: 640px) and (max-width: 1023.98px) {
-  .process-cell[data-i="1"], .process-cell[data-i="3"] { border-right: none; }
-  .process-cell[data-i="2"], .process-cell[data-i="3"] { border-bottom: none; }
-}
-@media (max-width: 639.98px) {
-  .process-cell { border-right: none; }
-  .process-cell[data-i="3"] { border-bottom: none; }
-}
-
-/* Smaller nav pills on mobile */
-@media (max-width: 640px) {
-  .nav-pill { padding: 4px 8px; }
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
@@ -245,6 +238,103 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
   z-index: 1;
 }
 
+/* ========================================
+   VARIANT — SAFE / EDITORIAL
+   ======================================== */
+
+.safe-root { font-size: 16px; line-height: 1.55; }
+.safe-root h1, .safe-root h2, .safe-root h3 {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em;
+}
+.safe-root .mono {
+  font-family: var(--font-mono); text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 11px;
+}
+.safe-root .section-label {
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--mu);
+}
+.safe-root a.line-link { position: relative; }
+.safe-root a.line-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 1px; background: currentColor;
+  transform-origin: left; transform: scaleX(0.18); transition: transform .35s ease;
+}
+.safe-root a.line-link:hover::after { transform: scaleX(1); }
+.safe-root .btn-primary {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px;
+  background: var(--ink); color: var(--p);
+  font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 11px; transition: background .25s ease, transform .25s ease;
+}
+.safe-root .btn-primary:hover { background: var(--acc); color: var(--accInk); }
+.safe-root .btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px;
+  border: 1px solid var(--line); font-family: var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px;
+  transition: background .25s ease, border-color .25s ease, color .25s ease;
+}
+.safe-root .btn-ghost:hover { border-color: var(--ink); }
+.safe-root .card-hover { transition: transform .35s ease; }
+.safe-root .card-hover:hover { transform: translateY(-3px); }
+.safe-root .img-hover { overflow: hidden; }
+.safe-root .img-hover .ph { transition: transform .8s ease; }
+.safe-root .img-hover:hover .ph { transform: scale(1.03); }
+
+/* ========================================
+   VARIANT — CHARACTER / WARM
+   ======================================== */
+
+.char-root { font-size: 16px; line-height: 1.55; position: relative; }
+.char-root h1, .char-root h2, .char-root h3 {
+  font-family: var(--font-display); font-weight: 500; letter-spacing: -0.005em;
+}
+.char-root .mono {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.char-root .caption { font-family: var(--font-mono); color: var(--mu); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+.char-root .stamp {
+  display: inline-flex; align-items: center; gap: 8px; padding: 5px 11px;
+  border: 1px solid var(--acc); color: var(--acc); border-radius: 999px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.char-root .stamp .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); }
+.char-root .btn-primary {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px;
+  background: var(--ink); color: var(--p); border-radius: 999px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; transition: transform .25s ease;
+}
+.char-root .btn-primary:hover { transform: translateY(-2px); }
+.char-root .btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px;
+  border: 1px solid var(--line); border-radius: 999px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; transition: transform .25s ease, border-color .25s ease;
+}
+.char-root .btn-ghost:hover { transform: translateY(-2px); border-color: var(--ink); }
+.char-root .num-mark {
+  font-family: var(--font-display); color: var(--acc); font-size: 88px;
+  line-height: 0.9; font-weight: 500;
+}
+.char-root .tag {
+  display: inline-block; padding: 3px 9px; background: var(--soft);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+}
+.char-root .card-tilt { transition: transform .35s ease; }
+.char-root .card-tilt:hover { transform: translateY(-3px); }
+.char-root .img-zoom { overflow: hidden; }
+.char-root .img-zoom .ph { transition: transform .8s ease; }
+.char-root .img-zoom:hover .ph { transform: scale(1.04); }
+.char-root a { color: inherit; }
+.char-root a.und {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px; background-position: 0 100%;
+  background-repeat: no-repeat; padding-bottom: 1px;
+  transition: background-size .35s ease;
+}
+.char-root a.und:hover { background-size: 0% 1px; background-position: 100% 100%; }
 
 /* ========================================
    VARIANT — BOLD / SOFT BRUTALIST
@@ -334,4 +424,132 @@ select:focus-visible, a:focus-visible {
 @layer base {
   * { @apply border-border outline-ring/50; }
   body { @apply bg-background text-foreground; }
+}
+
+/* ========================================
+   RESPONSIVE OVERRIDES (mobile + tablet)
+   The template's components use inline styles with fixed multi-column
+   grids and 56px/32px horizontal padding. These overrides collapse those
+   layouts on small screens without rewriting every section.
+   ======================================== */
+
+html, body { overflow-x: hidden; }
+
+/* Tablet and below: tighten horizontal padding on every variant-root
+   section/header/footer, plus their direct section/header/footer children
+   (covers the `<div className="...-root"><header padding="20px 56px">` pattern). */
+@media (max-width: 900px) {
+  section.safe-root, section.char-root, section.bold-root,
+  footer.safe-root, footer.char-root, footer.bold-root,
+  header.safe-root, header.char-root, header.bold-root,
+  .safe-root > section, .safe-root > footer, .safe-root > header, .safe-root > article,
+  .char-root > section, .char-root > footer, .char-root > header, .char-root > article,
+  .bold-root > section, .bold-root > footer, .bold-root > header, .bold-root > article {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  /* Trim top/bottom on tall hero blocks */
+  section.safe-root, section.char-root, section.bold-root,
+  .safe-root > section, .char-root > section, .bold-root > section {
+    padding-top: clamp(48px, 8vw, 96px) !important;
+    padding-bottom: clamp(48px, 8vw, 96px) !important;
+  }
+  /* Character variant's hairline rule margin */
+  .char-root > div[style*="margin: 0 56px"] { margin: 0 24px !important; }
+}
+
+/* Mobile: collapse multi-column grids to single column */
+@media (max-width: 768px) {
+  /* Hide desktop nav links; show hamburger + panel */
+  .nav-links { display: none !important; }
+  .nav-mobile-toggle { display: inline-flex !important; align-items: center; }
+  .nav-mobile-panel { display: block !important; }
+  /* Bold nav: header was 3-col grid via flex; ensure logo can shrink */
+  .nav-header > a { min-width: 0; }
+
+  /* Collapse every inline grid-template-columns to a single column */
+  .safe-root [style*="grid-template-columns"],
+  .char-root [style*="grid-template-columns"],
+  .bold-root [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  /* Re-enable the nav-header grid for character variant (logo + toggle row) */
+  .char-root .nav-header[style*="grid-template-columns"] {
+    grid-template-columns: 1fr auto !important;
+    gap: 12px !important;
+  }
+  .char-root .nav-header > div[aria-hidden] { display: none !important; }
+
+  /* Flex rows with large gaps → wrap and tighten */
+  .safe-root [style*="display: flex"][style*="gap: 56"],
+  .char-root [style*="display: flex"][style*="gap: 56"],
+  .bold-root [style*="display: flex"][style*="gap: 56"] {
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+  }
+  .safe-root [style*="display: flex"][style*="gap: 48"],
+  .char-root [style*="display: flex"][style*="gap: 48"],
+  .bold-root [style*="display: flex"][style*="gap: 48"] {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .safe-root [style*="display: flex"][style*="gap: 40"],
+  .char-root [style*="display: flex"][style*="gap: 40"],
+  .bold-root [style*="display: flex"][style*="gap: 40"] {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+
+  /* Cap oversized inline display headings */
+  .safe-root h1[style*="font-size: 148"],
+  .safe-root h1[style*="fontSize: 148"],
+  .safe-root h1[style*="font-size: 140"],
+  .safe-root h1[style*="font-size: 132"],
+  .safe-root h1[style*="font-size: 124"],
+  .safe-root h1[style*="font-size: 120"] { font-size: clamp(40px, 12vw, 64px) !important; line-height: 1.02 !important; }
+  .char-root h1[style*="font-size"], .char-root h2[style*="font-size: 9"],
+  .char-root [style*="font-size: 96"], .char-root [style*="font-size: 88"],
+  .char-root [style*="font-size: 84"], .char-root [style*="font-size: 80"],
+  .char-root [style*="font-size: 72"] { font-size: clamp(36px, 11vw, 56px) !important; line-height: 1.05 !important; }
+  .bold-root [style*="font-size: 148"], .bold-root [style*="font-size: 140"],
+  .bold-root [style*="font-size: 132"], .bold-root [style*="font-size: 124"],
+  .bold-root [style*="font-size: 120"], .bold-root [style*="font-size: 112"],
+  .bold-root [style*="font-size: 96"], .bold-root [style*="font-size: 88"],
+  .bold-root [style*="font-size: 80"] { font-size: clamp(40px, 13vw, 64px) !important; line-height: 0.98 !important; }
+  /* Smaller display sizes */
+  [style*="font-size: 64"], [style*="font-size: 56"], [style*="font-size: 52"],
+  [style*="font-size: 48"] { font-size: clamp(28px, 8vw, 40px) !important; }
+
+  /* Fullbleed hero sections: shrink fixed heights */
+  .safe-root [style*="height: 720"],
+  .char-root [style*="height: 720"],
+  .bold-root [style*="height: 720"] { height: 520px !important; }
+  .safe-root [style*="height: 680"],
+  .char-root [style*="height: 680"],
+  .bold-root [style*="height: 680"] { height: 480px !important; }
+
+  /* Inline maxWidth values that can squeeze text — let them breathe */
+  [style*="max-width: 540"], [style*="max-width: 480"], [style*="max-width: 420"] {
+    max-width: 100% !important;
+  }
+
+  /* Marquee + horizontal scrollers — allow horizontal scroll inside the band */
+  .safe-root .marquee, .char-root .marquee, .bold-root .marquee { gap: 32px !important; }
+
+  /* Footer copyright row stack */
+  footer [style*="justify-content: space-between"] {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+}
+
+/* Phones <= 480: tighten further */
+@media (max-width: 480px) {
+  .safe-root [style*="padding: 48px 24px"],
+  .char-root [style*="padding: 48px 24px"],
+  .bold-root [style*="padding: 48px 24px"] {
+    padding: 40px 16px !important;
+  }
+  .nav-header { padding-left: 16px !important; padding-right: 12px !important; }
 }

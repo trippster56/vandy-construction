@@ -11,7 +11,8 @@ import { siteConfig } from "@/lib/site-config";
 interface FormData {
   name: string;
   email: string;
-  subject: string;
+  phone: string;
+  preferredContact: "email" | "text";
   message: string;
   honeypot: string;
 }
@@ -20,7 +21,8 @@ export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    subject: "",
+    phone: "",
+    preferredContact: "email",
     message: "",
     honeypot: "",
   });
@@ -54,7 +56,8 @@ export default function ContactPage() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
+          phone: formData.phone,
+          preferredContact: formData.preferredContact,
           message: formData.message,
         }),
       });
@@ -62,7 +65,14 @@ export default function ContactPage() {
       if (!res.ok) throw new Error("Failed to send message");
 
       setStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "", honeypot: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        preferredContact: "email",
+        message: "",
+        honeypot: "",
+      });
       setTimeout(() => setStatus("idle"), 5000);
     } catch {
       setErrorMsg("Something went wrong. Please try again or email us directly.");
@@ -134,28 +144,44 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-1">
-                    Subject
+                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">
+                    Phone
                   </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
                     onChange={handleChange}
-                    className="h-11 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm"
-                  >
-                    <option value="">Select a topic...</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Project Quote">Project Quote</option>
-                    <option value="Collaboration">Collaboration</option>
-                    <option value="Support">Support</option>
-                    <option value="Other">Other</option>
-                  </select>
+                    placeholder="(555) 123-4567"
+                    className="h-11"
+                  />
                 </div>
+
+                <fieldset>
+                  <legend className="block text-sm font-medium text-foreground mb-2">
+                    Preferred way to reach you
+                  </legend>
+                  <div className="flex gap-6">
+                    {(["email", "text"] as const).map((method) => (
+                      <label key={method} className="flex items-center gap-2 text-sm text-foreground cursor-pointer capitalize">
+                        <input
+                          type="radio"
+                          name="preferredContact"
+                          value={method}
+                          checked={formData.preferredContact === method}
+                          onChange={handleChange}
+                          className="accent-primary h-4 w-4"
+                        />
+                        {method}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
-                    Message *
+                    How can we help? *
                   </label>
                   <Textarea
                     id="message"
@@ -164,7 +190,7 @@ export default function ContactPage() {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your project..."
+                    placeholder="Briefly describe your project or question..."
                     className="min-h-[150px]"
                   />
                 </div>
