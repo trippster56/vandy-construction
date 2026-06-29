@@ -7,18 +7,18 @@ import { siteConfig } from "@/lib/site-config";
 const values = [
   {
     icon: Heart,
-    title: "Passion",
-    description: "We love what we do, and it shows in every project we deliver.",
+    title: "Welcoming",
+    description: "We make every client feel heard from the first conversation to the final walk-through.",
   },
   {
     icon: Target,
-    title: "Quality",
-    description: "We hold ourselves to the highest standards in design and development.",
+    title: "Experienced",
+    description: "Licensed, insured, and proven across residential and commercial work in the Pee Dee.",
   },
   {
     icon: Users,
-    title: "Collaboration",
-    description: "We work closely with every client to ensure their vision becomes reality.",
+    title: "Trustworthy",
+    description: "Clear communication, honest estimates, and work we stand behind in writing.",
   },
 ];
 
@@ -27,36 +27,37 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="About us"
-        title={`About ${siteConfig.name}`}
-        subtitle="We're a passionate team dedicated to creating exceptional digital experiences. We help businesses of all sizes establish and grow their online presence."
+        title={`About ${siteConfig.short}`}
+        subtitle="A licensed and insured general contractor serving Florence, SC and the surrounding counties — building homes and commercial spaces our neighbors trust."
       />
 
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
-              <p className="text-muted-foreground text-sm">Team photo or brand image</p>
+              <p className="text-muted-foreground text-sm">Project or team photo</p>
             </div>
 
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
               <div className="h-1 w-16 bg-primary mb-6 rounded-full" />
+              {/* TODO: Josh to provide final copy (he's writing it himself, 4.2). */}
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Founded with a simple mission: to make beautiful, functional
-                  websites accessible to every business. We believe that great
-                  design shouldn&apos;t be reserved for big budgets.
+                  Vandy Construction Company is a licensed and insured general
+                  contractor serving Florence, SC and the surrounding counties.
+                  We build for homeowners, property owners, businesses, and the
+                  real estate professionals who refer us.
                 </p>
                 <p>
-                  Over the years, we&apos;ve had the privilege of working with
-                  clients across a wide range of industries — from local
-                  businesses and nonprofits to creative studios and e-commerce
-                  brands.
+                  From custom homes and renovations to commercial buildouts and
+                  site work, we manage every phase of a project — handling
+                  permits, inspections, and the day-to-day so you don&apos;t have to.
                 </p>
                 <p>
-                  Every project starts with listening. We take the time to
-                  understand your goals, your audience, and your brand before
-                  writing a single line of code.
+                  Every project starts with listening. We walk the site, learn
+                  your goals and budget, and put a clear, honest plan in writing
+                  before any work begins.
                 </p>
               </div>
             </div>

@@ -8,12 +8,10 @@ function isDatabaseConfigured() {
 
 export async function getAdminStats() {
   if (!isDatabaseConfigured() || !db) {
-    return { products: 0, blogPosts: 0, messages: 0, orders: 0 };
+    return { messages: 0 };
   }
-  const [[messageCount]] = await Promise.all([
-    db.select({ value: count() }).from(contactMessages),
-  ]);
-  return { products: 0, blogPosts: 0, messages: messageCount.value, orders: 0 };
+  const [messageCount] = await db.select({ value: count() }).from(contactMessages);
+  return { messages: messageCount.value };
 }
 
 export async function saveContactMessage(data: {
