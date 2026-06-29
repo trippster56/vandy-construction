@@ -59,14 +59,14 @@ export const siteConfig = {
   // ── Contact Info ──────────────────────  TODO: Josh — real NAP
   contact: {
     email: "hello@vandyconstruction.com",
-    phone: "(555) 123-4567",
+    phone: "(843) 939-9393",
     address: "Florence, SC",
     hours: "Mon–Fri · 7am–5pm",
   },
 
   // ── Social Links (per 7: Facebook only) ──
   socials: {
-    facebook: "https://facebook.com", // TODO: Josh — real Facebook page URL
+    facebook: "https://www.facebook.com/profile.php?id=61573879797884",
   },
 
   // ── Google Business Profile (map + "Leave a review") ──  TODO: Josh
