@@ -3,6 +3,7 @@ import { Raleway, Geist_Mono } from "next/font/google";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import FooterGate from "@/components/layout/FooterGate";
+import GroundToggle from "@/components/ui/GroundToggle";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -50,6 +51,7 @@ export default function RootLayout({
         <FooterGate>
           <Footer />
         </FooterGate>
+        <GroundToggle />
       </body>
     </html>
   );
