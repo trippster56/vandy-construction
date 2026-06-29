@@ -18,7 +18,7 @@
   --primary-dark: #10153D;
   --brand-accent: #181F58;
 
-  /* Neutrals */
+  /* Neutrals (default = white ground). Gray ground lives in `.ground-gray`. */
   --background: #ffffff;
   --foreground: #181F58;
   --card: #ffffff;
@@ -66,6 +66,30 @@
   --font-display: var(--font-display-safe);
   --font-body: var(--font-body-safe);
   --font-mono: var(--font-mono-safe);
+}
+
+/* ── Page-ground toggle ──────────────────────────────
+   Set siteConfig.pageGround to "gray" to put the whole site on the
+   light-gray ground Josh asked for (#9A9CA1, questionnaire 3.2).
+   White cards/forms stay white as crisp panels; alt sections use a
+   lighter panel tone; muted text + rules darken for contrast. */
+.ground-gray {
+  --background: #9A9CA1;
+  --muted: #eef0f1;
+  --muted-foreground: #3f4248;
+  --secondary: #eef0f1;
+  --secondary-foreground: #3f4248;
+  --accent: #eef0f1;
+  --border: #c4c6cb;
+  --input: #c4c6cb;
+  --sidebar: #eef0f1;
+  --sidebar-accent: #eef0f1;
+  --sidebar-border: #c4c6cb;
+  /* variant palette ground */
+  --p: #9A9CA1;
+  --mu: #3f4248;
+  --line: #7f8389;
+  --soft: #eef0f1;
 }
 
 /* Variant root selectors swap fonts. */

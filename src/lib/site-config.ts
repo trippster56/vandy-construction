@@ -8,6 +8,7 @@
 
 export type Variant = "safe" | "character" | "bold";
 export type HeroLayout = "split" | "type-only" | "fullbleed";
+export type PageGround = "white" | "gray";
 
 export const siteConfig = {
   // ── Brand variant + hero ──────────────
@@ -15,6 +16,10 @@ export const siteConfig = {
   //   studio-mcgee.com, pillarhomes.com, gilbaneco.com)
   variant: "safe" as Variant,
   hero: "split" as HeroLayout,
+
+  // Page ground toggle: "white" (clean editorial) or "gray" (#9A9CA1 — Josh's
+  // requested background, 3.2). Flip this to compare the two versions.
+  pageGround: "gray" as PageGround,
 
   // ── Branding ──────────────────────────
   name: "Vandy Construction Company, LLC",
