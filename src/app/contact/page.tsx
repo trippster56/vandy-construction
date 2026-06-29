@@ -1,84 +1,15 @@
-"use client";
-
-import { useState } from "react";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import { siteConfig } from "@/lib/site-config";
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  preferredContact: "email" | "text";
-  message: string;
-  honeypot: string;
-}
+export const metadata = {
+  title: "Contact | Vandy Construction Company",
+  description:
+    "Get in touch with Vandy Construction Company in Florence, SC — request an estimate or ask a question.",
+};
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    preferredContact: "email",
-    message: "",
-    honeypot: "",
-  });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (formData.honeypot) return;
-
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setErrorMsg("Please fill in all required fields.");
-      setStatus("error");
-      return;
-    }
-
-    setStatus("sending");
-    setErrorMsg("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          preferredContact: formData.preferredContact,
-          message: formData.message,
-        }),
-      });
-
-      if (!res.ok) throw new Error("Failed to send message");
-
-      setStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        preferredContact: "email",
-        message: "",
-        honeypot: "",
-      });
-      setTimeout(() => setStatus("idle"), 5000);
-    } catch {
-      setErrorMsg("Something went wrong. Please try again or email us directly.");
-      setStatus("error");
-    }
-  };
+  const { formEmbedUrl, formLinkUrl } = siteConfig.jobtread;
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
@@ -92,136 +23,44 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact us"
         title="Get in Touch"
-        subtitle="Have a question or want to work together? We'd love to hear from you."
+        subtitle="Request an estimate or send us a question — we'd love to hear about your project."
       />
 
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            {/* Lead capture — JobTread (submissions create a lead in JobTread) */}
             <div className="lg:col-span-3">
-              {siteConfig.jobtread.formEmbedUrl ? (
-                /* JobTread lead/estimate form — submissions auto-create leads in JobTread */
+              {formEmbedUrl ? (
                 <iframe
-                  src={siteConfig.jobtread.formEmbedUrl}
+                  src={formEmbedUrl}
                   title="Request an estimate"
                   className="w-full rounded-2xl border border-border bg-card"
                   style={{ minHeight: 760 }}
                   loading="lazy"
                 />
+              ) : formLinkUrl ? (
+                <div className="bg-card rounded-2xl border border-border p-8">
+                  <h3 className="text-xl font-bold text-foreground mb-2">Request an estimate</h3>
+                  <p className="text-muted-foreground text-sm mb-6">
+                    Tell us about your project and we&apos;ll get right back to you.
+                  </p>
+                  <a
+                    href={formLinkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-dark"
+                  >
+                    Request an Estimate
+                    <ArrowRight size={18} />
+                  </a>
+                </div>
               ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <input
-                  type="text"
-                  name="honeypot"
-                  value={formData.honeypot}
-                  onChange={handleChange}
-                  className="hidden"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
-                      Name *
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your name"
-                      className="h-11"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
-                      Email *
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="your@email.com"
-                      className="h-11"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">
-                    Phone
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(555) 123-4567"
-                    className="h-11"
-                  />
-                </div>
-
-                <fieldset>
-                  <legend className="block text-sm font-medium text-foreground mb-2">
-                    Preferred way to reach you
-                  </legend>
-                  <div className="flex gap-6">
-                    {(["email", "text"] as const).map((method) => (
-                      <label key={method} className="flex items-center gap-2 text-sm text-foreground cursor-pointer capitalize">
-                        <input
-                          type="radio"
-                          name="preferredContact"
-                          value={method}
-                          checked={formData.preferredContact === method}
-                          onChange={handleChange}
-                          className="accent-primary h-4 w-4"
-                        />
-                        {method}
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
-                    How can we help? *
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Briefly describe your project or question..."
-                    className="min-h-[150px]"
-                  />
-                </div>
-
-                {status === "error" && (
-                  <p role="alert" className="text-destructive text-sm font-medium">
-                    {errorMsg}
+                <div className="bg-card rounded-2xl border border-dashed border-border p-8 text-center">
+                  <p className="text-muted-foreground text-sm">
+                    Estimate request form (JobTread) will appear here once connected.
                   </p>
-                )}
-
-                {status === "success" && (
-                  <p role="status" className="text-green-600 text-sm font-medium">
-                    Message sent successfully! We&apos;ll get back to you soon.
-                  </p>
-                )}
-
-                <Button type="submit" disabled={status === "sending"} className="px-6 py-3 h-auto">
-                  <Send size={18} className="mr-2" />
-                  {status === "sending" ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
+                </div>
               )}
             </div>
 

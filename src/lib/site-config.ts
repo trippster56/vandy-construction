@@ -80,11 +80,13 @@ export const siteConfig = {
     mapsEmbedQuery: "Vandy Construction Company, Florence, SC", // used for the map embed
   },
 
-  // ── JobTread lead form ──
-  // When set to JobTread's embed URL, the Contact page renders their form
-  // (submissions auto-create leads in JobTread). Empty = use the built-in form.
+  // ── JobTread lead form (this IS the contact form) ──
+  // Submissions auto-create a lead/customer in JobTread.
+  //   formEmbedUrl → renders JobTread's form inline via iframe (preferred)
+  //   formLinkUrl  → if no embed, shows a "Request an Estimate" button to it
   jobtread: {
     formEmbedUrl: "", // TODO: Josh's coworker — JobTread embed/iframe URL
+    formLinkUrl: "", // TODO: or the hosted JobTread form link
   },
 
   // ── Email (Resend) ───────────────────

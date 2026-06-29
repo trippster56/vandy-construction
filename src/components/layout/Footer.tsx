@@ -65,7 +65,11 @@ function SafeFooter() {
         }}
       >
         <span>© {new Date().getFullYear()} {siteConfig.name} · Est. {siteConfig.established}</span>
-        <span>{siteConfig.city}</span>
+        <span style={{ display: "flex", gap: 16 }}>
+          <Link href="/privacy" className="line-link">Privacy</Link>
+          <Link href="/terms" className="line-link">Terms</Link>
+          <span>{siteConfig.city}</span>
+        </span>
       </div>
     </footer>
   );
