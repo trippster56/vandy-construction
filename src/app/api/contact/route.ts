@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     // Send email via Resend
     const { error } = await resend!.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
-      to: process.env.RESEND_TO_EMAIL || "hello@vandyconstruction.com",
+      to: process.env.RESEND_TO_EMAIL || "info@vandyconstruction.com",
       replyTo: email,
       subject: `[Vandy Construction] New inquiry from ${name}`,
       html: `

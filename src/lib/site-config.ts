@@ -19,12 +19,12 @@ export const siteConfig = {
 
   // Page ground toggle: "white" (clean editorial) or "gray" (#9A9CA1 — Josh's
   // requested background, 3.2). Flip this to compare the two versions.
-  pageGround: "gray" as PageGround,
+  pageGround: "white" as PageGround,
 
   // ── Branding ──────────────────────────
   name: "Vandy Construction Company, LLC",
   short: "Vandy Construction",
-  established: "20XX", // TODO: Josh — year established
+  established: "2024",
   city: "Florence, SC",
   tagline: "Welcoming. Experienced. Trustworthy.",
   description:
@@ -52,20 +52,20 @@ export const siteConfig = {
     body: "var(--font-body)",
   },
 
-  // ── Navigation Links (per 4.1: Home, About, Services, Team, Testimonials, Contact) ──
+  // ── Navigation Links (Gallery replaces Services) ──
   navLinks: [
     { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
+    { label: "Gallery", href: "/projects" },
     { label: "Team", href: "/team" },
     { label: "Testimonials", href: "/testimonials" },
     { label: "Contact", href: "/contact" },
   ],
 
-  // ── Contact Info ──────────────────────  TODO: Josh — real NAP
+  // ── Contact Info ──────────────────────
   contact: {
-    email: "hello@vandyconstruction.com",
+    email: "info@vandyconstruction.com",
     phone: "(843) 939-9393",
-    address: "Florence, SC",
+    address: "1427 Old Ebenezer Road, Florence, SC 29501",
     hours: "Mon–Fri · 7am–5pm",
   },
 
@@ -77,22 +77,13 @@ export const siteConfig = {
   // ── Google Business Profile (map + "Leave a review") ──  TODO: Josh
   google: {
     reviewUrl: "", // Google review link for the "Leave a review" CTA
-    mapsEmbedQuery: "Vandy Construction Company, Florence, SC", // used for the map embed
-  },
-
-  // ── JobTread lead form (this IS the contact form) ──
-  // Submissions auto-create a lead/customer in JobTread.
-  //   formEmbedUrl → renders JobTread's form inline via iframe (preferred)
-  //   formLinkUrl  → if no embed, shows a "Request an Estimate" button to it
-  jobtread: {
-    formEmbedUrl: "", // TODO: Josh's coworker — JobTread embed/iframe URL
-    formLinkUrl: "", // TODO: or the hosted JobTread form link
+    mapsEmbedQuery: "1427 Old Ebenezer Road, Florence, SC 29501", // used for the map embed
   },
 
   // ── Email (Resend) ───────────────────
   email: {
     from: "onboarding@resend.dev",
-    to: "hello@vandyconstruction.com",
+    to: "info@vandyconstruction.com",
   },
 
   // ── SEO (per 8.2 target terms) ──

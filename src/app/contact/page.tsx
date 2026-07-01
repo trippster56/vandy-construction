@@ -1,5 +1,6 @@
-import { Mail, Phone, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
+import ContactForm from "@/components/sections/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
@@ -9,8 +10,6 @@ export const metadata = {
 };
 
 export default function ContactPage() {
-  const { formEmbedUrl, formLinkUrl } = siteConfig.jobtread;
-
   const contactInfo = [
     { icon: Mail, label: "Email", value: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
     { icon: Phone, label: "Phone", value: siteConfig.contact.phone, href: `tel:${siteConfig.contact.phone}` },
@@ -29,39 +28,9 @@ export default function ContactPage() {
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Lead capture — JobTread (submissions create a lead in JobTread) */}
+            {/* Lead capture — native form → /api/contact (Resend) */}
             <div className="lg:col-span-3">
-              {formEmbedUrl ? (
-                <iframe
-                  src={formEmbedUrl}
-                  title="Request an estimate"
-                  className="w-full rounded-2xl border border-border bg-card"
-                  style={{ minHeight: 760 }}
-                  loading="lazy"
-                />
-              ) : formLinkUrl ? (
-                <div className="bg-card rounded-2xl border border-border p-8">
-                  <h3 className="text-xl font-bold text-foreground mb-2">Request an estimate</h3>
-                  <p className="text-muted-foreground text-sm mb-6">
-                    Tell us about your project and we&apos;ll get right back to you.
-                  </p>
-                  <a
-                    href={formLinkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-dark"
-                  >
-                    Request an Estimate
-                    <ArrowRight size={18} />
-                  </a>
-                </div>
-              ) : (
-                <div className="bg-card rounded-2xl border border-dashed border-border p-8 text-center">
-                  <p className="text-muted-foreground text-sm">
-                    Estimate request form (JobTread) will appear here once connected.
-                  </p>
-                </div>
-              )}
+              <ContactForm />
             </div>
 
             <div className="lg:col-span-2">

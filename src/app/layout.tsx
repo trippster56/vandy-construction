@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Raleway, Geist_Mono } from "next/font/google";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import FooterGate from "@/components/layout/FooterGate";
-import GroundToggle from "@/components/ui/GroundToggle";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 // Raleway drives both headings (Bold) and body (SemiBold) per questionnaire 3.3.
 const raleway = Raleway({
@@ -51,8 +53,24 @@ export default function RootLayout({
         <FooterGate>
           <Footer />
         </FooterGate>
-        <GroundToggle />
       </body>
+
+      {GA_ID && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga4" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `}
+          </Script>
+        </>
+      )}
     </html>
   );
 }

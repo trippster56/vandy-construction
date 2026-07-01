@@ -48,7 +48,7 @@ export function SafeServices() {
             </div>
             <h3 style={{ fontSize: 26, margin: "24px 0 8px", lineHeight: 1.15 }}>{s.title}</h3>
             <p style={{ fontSize: 14.5, color: "var(--mu)", margin: 0 }}>{s.body}</p>
-            <Link href="/services" className="line-link mono" style={{ marginTop: "auto", alignSelf: "flex-start", color: "var(--ink)" }}>
+            <Link href="/projects" className="line-link mono" style={{ marginTop: "auto", alignSelf: "flex-start", color: "var(--ink)" }}>
               Read more →
             </Link>
           </article>
@@ -155,7 +155,7 @@ export function BoldServices() {
                 </div>
                 <p style={{ fontSize: 15, margin: 0, opacity: 0.85, maxWidth: 400 }}>{s.body}</p>
                 <Link
-                  href="/services"
+                  href="/projects"
                   className="und mono"
                   style={{ display: "inline-block", marginTop: 20, fontWeight: 500, color: featured ? "var(--acc)" : "var(--ink)" }}
                 >

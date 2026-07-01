@@ -36,8 +36,8 @@ export function SafeCTA() {
         <Link href="/contact" className="btn-primary" style={{ background: "var(--acc)", color: "var(--accInk)" }}>
           Contact us →
         </Link>
-        <Link href="/services" className="btn-ghost" style={{ color: "var(--p)", borderColor: "rgba(255,255,255,0.2)" }}>
-          Our services
+        <Link href="/projects" className="btn-ghost" style={{ color: "var(--p)", borderColor: "rgba(255,255,255,0.2)" }}>
+          View our work
         </Link>
       </div>
     </section>
@@ -72,8 +72,8 @@ export function CharacterCTA() {
         <Link href="/contact" className="btn-primary" style={{ background: "var(--acc)", color: "var(--accInk)" }}>
           Contact us →
         </Link>
-        <Link href="/services" className="btn-ghost" style={{ color: "var(--p)", borderColor: "rgba(255,255,255,0.3)" }}>
-          Our services
+        <Link href="/projects" className="btn-ghost" style={{ color: "var(--p)", borderColor: "rgba(255,255,255,0.3)" }}>
+          View our work
         </Link>
       </div>
     </section>
@@ -108,8 +108,8 @@ export function BoldCTA() {
             >
               Contact us →
             </Link>
-            <Link href="/services" className="btn-ghost" style={{ color: "var(--accInk)", borderColor: "var(--accInk)" }}>
-              Our services
+            <Link href="/projects" className="btn-ghost" style={{ color: "var(--accInk)", borderColor: "var(--accInk)" }}>
+              View our work
             </Link>
           </div>
         </div>

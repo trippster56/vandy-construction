@@ -9,8 +9,8 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         eyebrow="Our work"
-        title="Projects"
-        subtitle="A look at recent residential and commercial builds. Projects shown here are managed from the admin panel."
+        title="Gallery"
+        subtitle="A look at recent residential and commercial builds."
       />
 
       <section className="py-12 md:py-16">
