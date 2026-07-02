@@ -66,7 +66,7 @@ export function HeroSafe({ hero }: { hero: string }) {
   // split (default)
   return (
     <section className="safe-root" style={{ padding: "80px 56px 100px", borderTop: `1px solid var(--line)` }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 56, alignItems: "end" }}>
+      <div className="hero-split" style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 56, alignItems: "end" }}>
         <div>
           <div style={{ display: "flex", gap: 16, alignItems: "baseline", marginBottom: 36 }}>
             <span className="section-label">Est. {siteConfig.established}</span>

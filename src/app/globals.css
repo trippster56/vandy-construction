@@ -511,56 +511,66 @@ html, body { overflow-x: hidden; }
   }
   .char-root .nav-header > div[aria-hidden] { display: none !important; }
 
+  /* IMPORTANT: React serializes inline style objects WITHOUT a space after the
+     colon (e.g. `font-size:116px`, `gap:56px`). The selectors below therefore
+     match that exact no-space format — matching `font-size: 116` (with a space)
+     never fires against React output. */
+
   /* Flex rows with large gaps → wrap and tighten */
-  .safe-root [style*="display: flex"][style*="gap: 56"],
-  .char-root [style*="display: flex"][style*="gap: 56"],
-  .bold-root [style*="display: flex"][style*="gap: 56"] {
-    flex-wrap: wrap !important;
-    gap: 20px !important;
-  }
-  .safe-root [style*="display: flex"][style*="gap: 48"],
-  .char-root [style*="display: flex"][style*="gap: 48"],
-  .bold-root [style*="display: flex"][style*="gap: 48"] {
-    flex-wrap: wrap !important;
-    gap: 16px !important;
-  }
-  .safe-root [style*="display: flex"][style*="gap: 40"],
-  .char-root [style*="display: flex"][style*="gap: 40"],
-  .bold-root [style*="display: flex"][style*="gap: 40"] {
+  .safe-root [style*="display:flex"][style*="gap:56px"],
+  .char-root [style*="display:flex"][style*="gap:56px"],
+  .bold-root [style*="display:flex"][style*="gap:56px"],
+  .safe-root [style*="display:flex"][style*="gap:48px"],
+  .char-root [style*="display:flex"][style*="gap:48px"],
+  .bold-root [style*="display:flex"][style*="gap:48px"],
+  .safe-root [style*="display:flex"][style*="gap:40px"],
+  .char-root [style*="display:flex"][style*="gap:40px"],
+  .bold-root [style*="display:flex"][style*="gap:40px"] {
     flex-wrap: wrap !important;
     gap: 16px !important;
   }
 
-  /* Cap oversized inline display headings */
-  .safe-root h1[style*="font-size: 148"],
-  .safe-root h1[style*="fontSize: 148"],
-  .safe-root h1[style*="font-size: 140"],
-  .safe-root h1[style*="font-size: 132"],
-  .safe-root h1[style*="font-size: 124"],
-  .safe-root h1[style*="font-size: 120"] { font-size: clamp(40px, 12vw, 64px) !important; line-height: 1.02 !important; }
-  .char-root h1[style*="font-size"], .char-root h2[style*="font-size: 9"],
-  .char-root [style*="font-size: 96"], .char-root [style*="font-size: 88"],
-  .char-root [style*="font-size: 84"], .char-root [style*="font-size: 80"],
-  .char-root [style*="font-size: 72"] { font-size: clamp(36px, 11vw, 56px) !important; line-height: 1.05 !important; }
-  .bold-root [style*="font-size: 148"], .bold-root [style*="font-size: 140"],
-  .bold-root [style*="font-size: 132"], .bold-root [style*="font-size: 124"],
-  .bold-root [style*="font-size: 120"], .bold-root [style*="font-size: 112"],
-  .bold-root [style*="font-size: 96"], .bold-root [style*="font-size: 88"],
-  .bold-root [style*="font-size: 80"] { font-size: clamp(40px, 13vw, 64px) !important; line-height: 0.98 !important; }
-  /* Smaller display sizes */
-  [style*="font-size: 64"], [style*="font-size: 56"], [style*="font-size: 52"],
-  [style*="font-size: 48"] { font-size: clamp(28px, 8vw, 40px) !important; }
+  /* Every h1 is a hero / page title → clamp it hard so long single words
+     ("Welcoming.") can never overrun the viewport and get clipped. */
+  :is(.safe-root, .char-root, .bold-root) h1[style*="font-size:"] {
+    font-size: clamp(38px, 11vw, 60px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  /* Any other element carrying a LARGE inline font-size (section headings,
+     stat numerals, mega numbers). Small inline sizes (≤48px subheads/body)
+     are deliberately left untouched. */
+  :is(.safe-root, .char-root, .bold-root) :is(
+    [style*="font-size:52px"], [style*="font-size:56px"], [style*="font-size:60px"],
+    [style*="font-size:64px"], [style*="font-size:72px"], [style*="font-size:80px"],
+    [style*="font-size:84px"], [style*="font-size:88px"], [style*="font-size:92px"],
+    [style*="font-size:96px"], [style*="font-size:100px"], [style*="font-size:108px"],
+    [style*="font-size:116px"], [style*="font-size:124px"], [style*="font-size:132px"],
+    [style*="font-size:148px"], [style*="font-size:160px"], [style*="font-size:168px"],
+    [style*="font-size:188px"], [style*="font-size:236px"]
+  ) {
+    font-size: clamp(28px, 7.5vw, 44px) !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Long words in any heading wrap instead of clipping past the edge. */
+  :is(.safe-root, .char-root, .bold-root) :is(h1, h2, h3) {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
 
   /* Fullbleed hero sections: shrink fixed heights */
-  .safe-root [style*="height: 720"],
-  .char-root [style*="height: 720"],
-  .bold-root [style*="height: 720"] { height: 520px !important; }
-  .safe-root [style*="height: 680"],
-  .char-root [style*="height: 680"],
-  .bold-root [style*="height: 680"] { height: 480px !important; }
+  .safe-root [style*="height:720px"], .char-root [style*="height:720px"], .bold-root [style*="height:720px"],
+  .safe-root [style*="height:740px"], .char-root [style*="height:740px"], .bold-root [style*="height:740px"],
+  .safe-root [style*="height:700px"], .char-root [style*="height:700px"], .bold-root [style*="height:700px"] {
+    height: clamp(380px, 70vh, 520px) !important;
+  }
 
   /* Inline maxWidth values that can squeeze text — let them breathe */
-  [style*="max-width: 540"], [style*="max-width: 480"], [style*="max-width: 420"] {
+  [style*="max-width:640px"], [style*="max-width:580px"], [style*="max-width:540px"],
+  [style*="max-width:520px"], [style*="max-width:480px"], [style*="max-width:420px"] {
     max-width: 100% !important;
   }
 
@@ -568,10 +578,15 @@ html, body { overflow-x: hidden; }
   .safe-root .marquee, .char-root .marquee, .bold-root .marquee { gap: 32px !important; }
 
   /* Footer copyright row stack */
-  footer [style*="justify-content: space-between"] {
+  footer [style*="justify-content:space-between"] {
     flex-wrap: wrap !important;
     gap: 8px !important;
   }
+
+  /* Home split hero: show the hero image first, above the headline/copy,
+     but cap its height so the headline + CTAs stay in view alongside it. */
+  .hero-split > figure { order: -1; }
+  .hero-split > figure .ph { height: clamp(240px, 42vh, 340px) !important; }
 }
 
 /* Phones <= 480: tighten further */
