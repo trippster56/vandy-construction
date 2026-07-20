@@ -21,10 +21,10 @@ export function SafeServices() {
         </div>
         <div>
           <h2 style={{ fontSize: 56, lineHeight: 1.05, margin: 0, maxWidth: 780 }}>
-            Section heading goes here.
+            Built Around Your Vision
           </h2>
           <p style={{ fontSize: 18, color: "var(--mu)", marginTop: 24, maxWidth: 580 }}>
-            A short paragraph introducing what your business does.
+            Every project begins with your vision. At Vandy Construction, we believe the best results come from working closely with our clients every step of the way. Whether you&apos;re updating your current space or starting something entirely new, we&apos;re committed to providing quality workmanship, transparent communication, and personalized solutions that reflect your needs, style, and budget while bringing your vision to life with confidence.
           </p>
         </div>
       </div>
@@ -65,11 +65,11 @@ export function CharacterServices() {
         <div>
           <span className="caption">What we do</span>
           <h2 style={{ fontSize: 84, lineHeight: 0.98, margin: "16px 0 0", maxWidth: 700 }}>
-            Section heading goes here.
+            Built Around Your Vision
           </h2>
         </div>
         <p style={{ fontSize: 18, color: "var(--mu)", maxWidth: 460, marginBottom: 12 }}>
-          A short paragraph introducing what your business does.
+          Every project begins with your vision. At Vandy Construction, we believe the best results come from working closely with our clients every step of the way. Whether you&apos;re updating your current space or starting something entirely new, we&apos;re committed to providing quality workmanship, transparent communication, and personalized solutions that reflect your needs, style, and budget while bringing your vision to life with confidence.
         </p>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}>
@@ -108,11 +108,11 @@ export function BoldServices() {
         <div>
           <span className="label">What we do</span>
           <h2 className="mega" style={{ fontSize: 116, margin: "20px 0 0", maxWidth: 900 }}>
-            Section heading goes here.
+            Built Around Your Vision
           </h2>
         </div>
         <p style={{ fontSize: 17, color: "var(--mu)", maxWidth: 320, marginBottom: 12, lineHeight: 1.4 }}>
-          A short paragraph introducing what your business does.
+          Every project begins with your vision. At Vandy Construction, we believe the best results come from working closely with our clients every step of the way. Whether you&apos;re updating your current space or starting something entirely new, we&apos;re committed to providing quality workmanship, transparent communication, and personalized solutions that reflect your needs, style, and budget while bringing your vision to life with confidence.
         </p>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24, padding: "0 24px" }}>

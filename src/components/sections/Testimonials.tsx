@@ -15,7 +15,7 @@ function SafeTest() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: `repeat(${Math.min(HOME_TESTIMONIALS.length, 3)}, 1fr)`,
           gap: 56,
           borderTop: `1px solid var(--line)`,
           paddingTop: 48,
@@ -53,7 +53,7 @@ function CharacterTest() {
   return (
     <section className="char-root" style={{ padding: "120px 56px" }}>
       <span className="caption">What folks say</span>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, marginTop: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(HOME_TESTIMONIALS.length, 3)}, 1fr)`, gap: 32, marginTop: 48 }}>
         {HOME_TESTIMONIALS.map((q, i) => (
           <figure
             key={i}
@@ -112,7 +112,7 @@ function BoldTest() {
           What folks<br />
           <span style={{ color: "var(--acc)" }}>say.</span>
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(HOME_TESTIMONIALS.length, 3)}, 1fr)`, gap: 24 }}>
           {HOME_TESTIMONIALS.map((q, i) => {
             const dark = i === 1;
             return (

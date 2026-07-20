@@ -1,17 +1,24 @@
 // Homepage content — Vandy Construction.
+import { projects } from "./projects";
 
 export const HOME_SERVICES = [
-  { n: "01", title: "Custom homes", body: "Ground-up residential construction tailored to your plans, budget, and timeline.", tag: "Residential" },
-  { n: "02", title: "Renovations & additions", body: "Kitchens, baths, basements, and whole-home remodels — built to last.", tag: "Residential" },
-  { n: "03", title: "Commercial buildouts", body: "Office, retail, and light industrial spaces from permit to punch-list.", tag: "Commercial" },
-  { n: "04", title: "Site work", body: "Grading, foundations, and concrete work for new construction and additions.", tag: "Site" },
+  { n: "01", title: "Custom Builds", body: "Ground-up residential construction tailored to your vision and project goals.", tag: "Residential" },
+  { n: "02", title: "Renovations & Additions", body: "Kitchen, bathroom and whole-home renovations, along with additions designed to expand your living space.", tag: "Residential" },
+  { n: "03", title: "Commercial Projects", body: "General repairs, structural improvements, home inspection items and restoration services for homeowners, real estate professionals and commercial properties.", tag: "Commercial" },
+  { n: "04", title: "Repairs & Restoration", body: "Whether you're preparing a home for closing or addressing everyday repairs, we complete projects efficiently with the same quality and care as every build.", tag: "Property Service" },
 ];
 
-export const HOME_WORK = [
-  { n: "01", title: "Modern lake house", meta: "Custom home · 14 months", caption: "4,200 sqft on a sloped lakefront lot." },
-  { n: "02", title: "Downtown retail buildout", meta: "Commercial · 6 weeks", caption: "Bare shell to grand opening with custom millwork." },
-  { n: "03", title: "Whole-home renovation", meta: "Renovation · 4 months", caption: "1920s craftsman taken back to studs and rebuilt." },
-];
+// Featured Projects on the homepage ARE the first three real projects — single
+// source of truth in projects.ts, so the homepage and /projects can't drift apart.
+export const HOME_WORK = projects.slice(0, 3).map((p) => ({
+  slug: p.slug,
+  n: p.n,
+  title: p.title,
+  meta: p.meta,
+  caption: p.caption,
+  image: p.image ?? "",
+  alt: p.alt ?? "",
+}));
 
 export const HOME_PRODUCTS = [
   { name: "Item placeholder", price: "$00" },
@@ -22,16 +29,15 @@ export const HOME_POSTS = [
 ];
 
 export const HOME_TESTIMONIALS = [
-  { quote: "Vandy ran our build on time and on budget. Communication was clear the whole way.", who: "M. Tanner", role: "Homeowner" },
-  { quote: "Their crews are clean, organized, and professional. We'll use them again on the next project.", who: "J. Walters", role: "Property developer" },
-  { quote: "The finish work on our retail space was exactly what we asked for. Punch list closed in days.", who: "R. Patel", role: "Retail tenant" },
+  { quote: "Josh and his team are incredibly responsive and consistently deliver quality work. I've trusted them with projects on many of the properties I've sold, and they always go above and beyond to make sure everything is completed the right way.", who: "H. Edwards", role: "Real Estate Broker" },
+  { quote: "Josh was excellent to work with. He delivered exactly what he promised, stayed on schedule and within budget, and transformed our old garage into a beautiful studio apartment. I look forward to working with him again.", who: "R. Cannon", role: "Commercial Client" },
 ];
 
 export const HOME_PROCESS = [
-  { n: "01", title: "Consultation",   body: "We walk the site, listen to your plans, and put together a written estimate." },
-  { n: "02", title: "Design & permit",body: "We work with your architect or ours; we handle permits, inspections, and the paperwork." },
-  { n: "03", title: "Build",          body: "Licensed, insured crews. Daily updates and a single point of contact." },
-  { n: "04", title: "Handoff",        body: "Final walk-through, punch list closed, warranty in writing." },
+  { n: "01", title: "Consultation",          body: "We meet to discuss your project, evaluate the space, and provide a detailed written estimate tailored to your goals and budget." },
+  { n: "02", title: "Planning & Selections", body: "Once your estimate is approved, we'll finalize material selections, coordinate scheduling, secure any necessary permits, and prepare your project for construction." },
+  { n: "03", title: "Project Begins",        body: "Our team begins construction according to the project plan, completing each phase with attention to detail and regular progress updates." },
+  { n: "04", title: "Final Walkthrough",     body: "We complete the finishing touches, address any remaining punch list items, and walk through the finished project together to ensure every detail meets your expectations." },
 ];
 
 export const HOME_TICKER = [

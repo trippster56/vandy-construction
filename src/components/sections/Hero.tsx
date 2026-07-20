@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Placeholder from "@/components/ui/Placeholder";
+import Photo from "@/components/ui/Photo";
 import { siteConfig } from "@/lib/site-config";
 
 export default function Hero() {
@@ -85,7 +86,17 @@ export function HeroSafe({ hero }: { hero: string }) {
           </div>
         </div>
         <figure className="img-hover" style={{ margin: 0 }}>
-          <Placeholder label="hero image" h={620} tone="#bfb39a" style={{ width: "100%" }} />
+          {siteConfig.heroImage ? (
+            <Photo
+              src={siteConfig.heroImage}
+              alt={siteConfig.heroImageAlt}
+              h={620}
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          ) : (
+            <Placeholder label="hero image" h={620} tone="#bfb39a" style={{ width: "100%" }} />
+          )}
         </figure>
       </div>
     </section>

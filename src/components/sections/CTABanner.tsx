@@ -27,10 +27,10 @@ export function SafeCTA() {
           fontWeight: 400,
         }}
       >
-        Let&apos;s talk.
+        Let&apos;s Build Something Great Together
       </h2>
       <p style={{ fontSize: 18, opacity: 0.7, maxWidth: 540, margin: "0 auto 36px" }}>
-        A short closing line goes here. Encourage a next step in one or two sentences.
+        Whether you&apos;re planning a renovation, addition, repair, or new construction project, we&apos;d love to hear about it.
       </p>
       <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
         <Link href="/contact" className="btn-primary" style={{ background: "var(--acc)", color: "var(--accInk)" }}>
@@ -63,10 +63,10 @@ export function CharacterCTA() {
           fontWeight: 500,
         }}
       >
-        Let&apos;s talk.
+        Let&apos;s Build Something Great Together
       </h2>
       <p style={{ fontSize: 18, opacity: 0.75, maxWidth: 540, margin: "0 auto 36px" }}>
-        A short closing line goes here. Encourage a next step in one or two sentences.
+        Whether you&apos;re planning a renovation, addition, repair, or new construction project, we&apos;d love to hear about it.
       </p>
       <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
         <Link href="/contact" className="btn-primary" style={{ background: "var(--acc)", color: "var(--accInk)" }}>
@@ -94,11 +94,11 @@ export function BoldCTA() {
     >
       <div style={{ padding: "0 24px", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 80, alignItems: "end" }}>
         <h2 className="mega" style={{ fontSize: 168, margin: 0, color: "var(--accInk)" }}>
-          Let&apos;s talk.
+          Let&apos;s Build Something Great Together
         </h2>
         <div>
           <p style={{ fontSize: 19, lineHeight: 1.4, margin: "0 0 32px", opacity: 0.92 }}>
-            A short closing line goes here. Encourage a next step in one or two sentences.
+            Whether you&apos;re planning a renovation, addition, repair, or new construction project, we&apos;d love to hear about it.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <Link

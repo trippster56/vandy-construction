@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import Placeholder from "@/components/ui/Placeholder";
+import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 import { projects } from "@/data/projects";
 
@@ -44,12 +45,16 @@ export default function ProjectsPage() {
                   <span style={{ fontWeight: 600 }}>{p.n}</span>
                   <span>{p.meta}</span>
                 </div>
-                <Placeholder
-                  label={p.title.toLowerCase()}
-                  h={300}
-                  tone={p.gallery[0]?.tone ?? "#c4a988"}
-                  style={{ width: "100%" }}
-                />
+                {p.image ? (
+                  <Photo src={p.image} alt={p.alt ?? p.title} h={300} sizes="(max-width: 1024px) 100vw, 33vw" />
+                ) : (
+                  <Placeholder
+                    label={p.title.toLowerCase()}
+                    h={300}
+                    tone={p.gallery[0]?.tone ?? "#c4a988"}
+                    style={{ width: "100%" }}
+                  />
+                )}
                 <div
                   style={{
                     padding: 20,

@@ -3,6 +3,7 @@ import ServicesPreview from "@/components/sections/ServicesPreview";
 import RecentWork from "@/components/sections/RecentWork";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
+import BrandPromise from "@/components/sections/BrandPromise";
 import CTABanner from "@/components/sections/CTABanner";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <RecentWork />
       <Process />
       <Testimonials />
+      <BrandPromise />
       <CTABanner />
     </>
   );

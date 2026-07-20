@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Placeholder from "@/components/ui/Placeholder";
+import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 import { projects, getProject } from "@/data/projects";
 import { siteConfig } from "@/lib/site-config";
@@ -80,12 +81,14 @@ export default async function ProjectDetailPage({
             >
               {project.duration}
             </span>
-            <span
-              className="label"
-              style={{ background: "var(--accInk)", color: "var(--acc)" }}
-            >
-              {project.location} · {project.year}
-            </span>
+            {project.location && project.year && (
+              <span
+                className="label"
+                style={{ background: "var(--accInk)", color: "var(--acc)" }}
+              >
+                {project.location} · {project.year}
+              </span>
+            )}
           </div>
           <h1
             className="mega"
@@ -121,70 +124,107 @@ export default async function ProjectDetailPage({
               marginBottom: 48,
             }}
           >
-            <Placeholder
-              label={`${project.title.toLowerCase()} · hero photo`}
-              h={520}
-              tone={project.gallery[0]?.tone ?? "#c4a988"}
-              style={{ width: "100%" }}
-            />
+            {project.image ? (
+              <Photo
+                src={project.image}
+                alt={project.alt ?? project.title}
+                h={520}
+                priority
+                sizes="(max-width: 1280px) 100vw, 1200px"
+              />
+            ) : (
+              <Placeholder
+                label={`${project.title.toLowerCase()} · hero photo`}
+                h={520}
+                tone={project.gallery[0]?.tone ?? "#c4a988"}
+                style={{ width: "100%" }}
+              />
+            )}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-12">
-            <div className="lg:col-span-2">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">About this project</h2>
-              <p className="text-muted-foreground leading-relaxed text-base">
-                {project.summary}
-              </p>
-            </div>
-            <aside
-              style={{
-                border: `2px solid var(--ink)`,
-                padding: 24,
-                background: "var(--p)",
-                height: "fit-content",
-              }}
-            >
-              <h3
-                className="mono"
-                style={{
-                  fontSize: 11,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  marginBottom: 16,
-                }}
-              >
-                Scope of work
-              </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                {project.scope.map((item) => (
-                  <li
-                    key={item}
+          {(project.summary || project.scope?.length) && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-12">
+              {project.summary && (
+                <div className="lg:col-span-2">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4">About this project</h2>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    {project.summary}
+                  </p>
+                </div>
+              )}
+              {project.scope?.length ? (
+                <aside
+                  style={{
+                    border: `2px solid var(--ink)`,
+                    padding: 24,
+                    background: "var(--p)",
+                    height: "fit-content",
+                  }}
+                >
+                  <h3
+                    className="mono"
                     style={{
-                      padding: "10px 0",
-                      borderTop: `1px solid var(--line)`,
-                      fontSize: 14,
+                      fontSize: 11,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      marginBottom: 16,
                     }}
                   >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          </div>
+                    Scope of work
+                  </h3>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {project.scope.map((item) => (
+                      <li
+                        key={item}
+                        style={{
+                          padding: "10px 0",
+                          borderTop: `1px solid var(--line)`,
+                          fontSize: 14,
+                        }}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              ) : null}
+            </div>
+          )}
 
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {project.gallery.map((img, i) => (
-              <div key={i} style={{ border: `2px solid var(--ink)` }}>
-                <Placeholder
-                  label={img.label}
-                  h={320}
-                  tone={img.tone}
-                  style={{ width: "100%" }}
-                />
+          {project.gallery.length > 0 && (
+            <>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">Gallery</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {project.gallery.map((img, i) => (
+                  <figure key={i} style={{ margin: 0, border: `2px solid var(--ink)` }}>
+                    {img.src ? (
+                      <Photo src={img.src} alt={img.label} h={320} sizes="(max-width: 768px) 100vw, 50vw" />
+                    ) : (
+                      <Placeholder
+                        label={img.label}
+                        h={320}
+                        tone={img.tone}
+                        style={{ width: "100%" }}
+                      />
+                    )}
+                    <figcaption
+                      className="mono"
+                      style={{
+                        padding: "10px 14px",
+                        borderTop: `2px solid var(--ink)`,
+                        fontSize: 11,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "var(--mu)",
+                      }}
+                    >
+                      {img.label}
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -206,12 +246,16 @@ export default async function ProjectDetailPage({
                     textDecoration: "none",
                   }}
                 >
-                  <Placeholder
-                    label={p.title.toLowerCase()}
-                    h={240}
-                    tone={p.gallery[0]?.tone ?? "#c4a988"}
-                    style={{ width: "100%" }}
-                  />
+                  {p.image ? (
+                    <Photo src={p.image} alt={p.alt ?? p.title} h={240} sizes="(max-width: 768px) 100vw, 50vw" />
+                  ) : (
+                    <Placeholder
+                      label={p.title.toLowerCase()}
+                      h={240}
+                      tone={p.gallery[0]?.tone ?? "#c4a988"}
+                      style={{ width: "100%" }}
+                    />
+                  )}
                   <div style={{ padding: 20, borderTop: `2px solid var(--ink)` }}>
                     <h3 style={{ fontSize: 20, margin: 0 }}>{p.title}</h3>
                     <p style={{ fontSize: 14, margin: "8px 0 0", color: "var(--mu)" }}>

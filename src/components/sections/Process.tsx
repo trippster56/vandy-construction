@@ -17,7 +17,7 @@ function SafeProcess() {
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 56, marginBottom: 56 }}>
         <span className="section-label">How it works</span>
         <h2 style={{ fontSize: 56, lineHeight: 1.05, margin: 0, maxWidth: 700 }}>
-          Process heading goes here.
+          From Vision to Completion
         </h2>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderTop: `1px solid var(--line)` }}>
@@ -48,7 +48,7 @@ function CharacterProcess() {
         <div>
           <span className="caption" style={{ color: "rgba(255,255,255,0.5)" }}>How it works</span>
           <h2 style={{ fontSize: 72, lineHeight: 0.98, margin: "16px 0 0", color: "var(--p)" }}>
-            Process heading goes here.
+            From Vision to Completion
           </h2>
         </div>
         <p style={{ fontSize: 17, opacity: 0.7, maxWidth: 420, marginBottom: 6 }}>
@@ -88,7 +88,7 @@ function BoldProcess() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 48 }}>
           <div>
             <span className="label">How it works</span>
-            <h2 className="mega" style={{ fontSize: 100, margin: "20px 0 0" }}>Process heading goes here.</h2>
+            <h2 className="mega" style={{ fontSize: 100, margin: "20px 0 0" }}>From Vision to Completion</h2>
           </div>
           <span className="mono" style={{ color: "var(--mu)", paddingBottom: 8 }}>Tag line goes here</span>
         </div>

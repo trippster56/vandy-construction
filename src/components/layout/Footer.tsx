@@ -25,7 +25,7 @@ function SafeFooter() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/logo-mark.svg" alt="" aria-hidden="true" style={{ height: 56, width: "auto", marginBottom: 16 }} />
           <div style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700 }}>{siteConfig.name}</div>
-          <p style={{ fontSize: 13, opacity: 0.6, marginTop: 12, maxWidth: 280 }}>{siteConfig.description}</p>
+          <p style={{ fontSize: 13, opacity: 0.6, marginTop: 12, maxWidth: 280 }}>{siteConfig.footerBlurb}</p>
         </div>
         <FooterCol title="Visit" tone="safe-dark">
           <p style={{ fontSize: 14, lineHeight: 1.7, margin: 0 }}>
@@ -95,7 +95,7 @@ function CharacterFooter() {
           <div style={{ fontFamily: "var(--font-display)", fontSize: 48, lineHeight: 1, fontWeight: 500 }}>
             {siteConfig.short} <span style={{ color: "var(--acc)" }}>&amp;</span> Co.
           </div>
-          <p style={{ fontSize: 15, color: "var(--mu)", marginTop: 16, maxWidth: 320 }}>{siteConfig.description}</p>
+          <p style={{ fontSize: 15, color: "var(--mu)", marginTop: 16, maxWidth: 320 }}>{siteConfig.footerBlurb}</p>
         </div>
         <div>
           <div className="caption" style={{ color: "var(--acc)", marginBottom: 14 }}>Visit</div>
@@ -168,7 +168,7 @@ function BoldFooter() {
             >
               {siteConfig.short}<br />&amp; Co.
             </div>
-            <p style={{ fontSize: 14, opacity: 0.7, marginTop: 20, maxWidth: 320 }}>{siteConfig.description}</p>
+            <p style={{ fontSize: 14, opacity: 0.7, marginTop: 20, maxWidth: 320 }}>{siteConfig.footerBlurb}</p>
           </div>
           <div>
             <div className="mono" style={{ color: "var(--acc)", marginBottom: 16, fontWeight: 600 }}>Visit</div>

@@ -26,11 +26,20 @@ export const siteConfig = {
   short: "Vandy Construction",
   established: "2024",
   city: "Florence, SC",
-  tagline: "Welcoming. Experienced. Trustworthy.",
+  tagline: "Building with Excellence. Serving with Integrity. Impacting Lives.",
   description:
     "Licensed and insured general contractor serving Florence, SC and surrounding counties.",
+  // Footer blurb (per Josh's feedback doc) — kept separate from `description`
+  // so the hero subhead / SEO copy stay independent.
+  footerBlurb:
+    "Licensed & Insured Residential and Commercial Contractor proudly serving Florence, SC and the surrounding Pee Dee communities.",
   url: "https://vandyconstruction.com",
   logo: "/images/logo-mark.svg", // vectorized from Josh's logo (silver gradient); also logo-mark-mono.svg for single-color use
+
+  // Hero image — drop Josh's chosen "after" photo path here (e.g. "/images/hero.jpg")
+  // to swap the styled placeholder for the real photo. Empty string = placeholder.
+  heroImage: "",
+  heroImageAlt: "",
 
   // ── Colors (per questionnaire 3.2) ──
   colors: {
@@ -90,7 +99,7 @@ export const siteConfig = {
   seo: {
     title: "Vandy Construction Company | General Contractor in Florence, SC",
     description:
-      "Licensed and insured general contractor serving Florence, SC and surrounding counties. Welcoming, experienced, trustworthy.",
+      "Licensed and insured general contractor serving Florence, SC and the surrounding Pee Dee communities. Building with excellence, serving with integrity, impacting lives.",
     keywords: [
       "contractor in florence sc",
       "construction florence sc",
