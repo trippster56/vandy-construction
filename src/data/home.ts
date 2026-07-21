@@ -4,7 +4,7 @@ import { projects } from "./projects";
 export const HOME_SERVICES = [
   { n: "01", title: "Custom Builds", body: "Ground-up residential construction tailored to your vision and project goals.", tag: "Residential" },
   { n: "02", title: "Renovations & Additions", body: "Kitchen, bathroom and whole-home renovations, along with additions designed to expand your living space.", tag: "Residential" },
-  { n: "03", title: "Commercial Projects", body: "General repairs, structural improvements, home inspection items and restoration services for homeowners, real estate professionals and commercial properties.", tag: "Commercial" },
+  { n: "03", title: "Commercial Projects", body: "Interior renovations, tenant improvements, office remodels and commercial build-outs designed to create functional, professional spaces that meet your business needs.", tag: "Commercial" },
   { n: "04", title: "Repairs & Restoration", body: "Whether you're preparing a home for closing or addressing everyday repairs, we complete projects efficiently with the same quality and care as every build.", tag: "Property Service" },
 ];
 

@@ -44,7 +44,28 @@ export function HeroSafe({ hero }: { hero: string }) {
   if (hero === "fullbleed") {
     return (
       <section className="safe-root" style={{ position: "relative", height: 720, borderTop: `1px solid var(--line)`, overflow: "hidden" }}>
-        <Placeholder label="hero image" h="100%" tone="#3a3128" style={{ width: "100%", color: "#e5dccb" }} />
+        {siteConfig.heroImage ? (
+          <Photo
+            src={siteConfig.heroImage}
+            alt={siteConfig.heroImageAlt}
+            h="100%"
+            priority
+            sizes="100vw"
+            style={{ position: "absolute", inset: 0 }}
+          />
+        ) : (
+          <Placeholder label="hero image" h="100%" tone="#3a3128" style={{ width: "100%", color: "#e5dccb" }} />
+        )}
+        {/* Navy scrim so the headline and buttons stay legible over the photo. */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(16,21,61,0.45) 0%, rgba(16,21,61,0.20) 42%, rgba(16,21,61,0.80) 100%)",
+          }}
+        />
         <div style={{ position: "absolute", inset: 0, padding: 56, display: "flex", flexDirection: "column", justifyContent: "space-between", color: "#fff8ef" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
             <span className="mono" style={{ opacity: 0.7, letterSpacing: "0.14em" }}>Est. {siteConfig.established}</span>

@@ -7,8 +7,7 @@ Labels: 🟢 READY (text-only) · 🟡 NEEDS PHOTO · 🔵 NEEDS JOSH · 🟣 DE
 
 ## Hero
 - [x] 🟢 Headline → "Building with Excellence. Serving with Integrity. Impacting Lives." *(was "Welcoming. Experienced. Trustworthy.")*
-- [x] Hero image slot wired photo-ready (`siteConfig.heroImage` / `heroImageAlt`). Empty = styled placeholder shows; set the path to drop in the real photo. Layout is the split (image on the side) per Josh.
-- [ ] 🟡🔵 Hero photo itself — Josh to pick the "after" shot. Then set `heroImage` (one line).
+- [x] ✅ **Josh picked Option 1 — full-image background hero** (Doulaveris-style). Layout switched `split` → `fullbleed`; wired `vandy-remodel-wide.jpg` (open-concept remodel shot) as the background with a navy scrim for headline/button legibility.
 
 ## "What we do" section
 - [x] 🟢 Section heading → "Built Around Your Vision"
@@ -17,7 +16,7 @@ Labels: 🟢 READY (text-only) · 🟡 NEEDS PHOTO · 🔵 NEEDS JOSH · 🟣 DE
 - [x] 🟢 02 Renovations & Additions (Residential) + description
 - [x] 🟢 03 Commercial Projects (Commercial) + description
 - [x] 🟢 04 Repairs & Restoration (Property Service) + description
-- [ ] 🔵 **QUESTION for Josh:** the description written under "03 Commercial Projects" is about repairs/inspections/restoration — reads like it belongs to #04. Looks like 03 & 04 descriptions may be swapped. Implemented verbatim as written for now.
+- [x] ✅ **Josh resolved the 03 wording** — replaced the repairs-sounding copy with: "Interior renovations, tenant improvements, office remodels and commercial build-outs designed to create functional, professional spaces that meet your business needs."
 
 ## Featured Projects (Recent Work)
 - [x] 🟢 Heading → "Featured Projects"
@@ -31,10 +30,10 @@ Labels: 🟢 READY (text-only) · 🟡 NEEDS PHOTO · 🔵 NEEDS JOSH · 🟣 DE
   - Commercial Renovation → studio hero + kitchen / island / bathroom
   - Kitchen Remodel → wide kitchen hero + 2 kitchen angles / great room
 - [x] Unified: homepage Featured Projects + `/projects` gallery are now ONE source of truth (`projects.ts`). Old template placeholders (Modern lake house, "20XX", "Great PeeDee", invented scope/summary) deleted. "See More" → gallery → each project opens a photo-forward detail page.
-- [ ] 🔵 Brief project captions are draft one-liners — confirm/adjust with Josh (esp. Full Home Remodel & Kitchen wording).
+- [x] ✅ Project captions confirmed by Josh ("the wording looks great").
 - [x] 🟡 Gallery photos pulled + wired for all three featured projects — now as **before → after pairs** (side by side on the detail page, captioned) so Josh's work shows.
-- [ ] 🟣 MORE jobs available: the photo drop also had Darlington Remodel (7 shots), Darlington Carport, Battery Park Porch, Lake City Porch, Pool House Paint, Turbeville Stage. Could become additional gallery projects — needs category + rough duration from Josh, and a re-share of those specific photos (raw drop was deleted to keep the repo lean).
-- [ ] 🟣 Hero image candidate: `vandy-remodel-wide.jpg` (the wide open-concept shot) is a strong option for the homepage hero once the split/full-bleed layout is decided.
+- [ ] 🔵 MORE jobs coming: those photo-drop jobs (Darlington Remodel, Darlington Carport, Battery Park Porch, Lake City Porch, Pool House Paint, Turbeville Stage) predate Tripp on the account. Josh will (a) confirm details on those and (b) upload fresh photos — incl. custom houses — plus a doc with length-of-work and other info. Add as gallery projects once that arrives.
+- [x] ✅ Hero image chosen: `vandy-remodel-wide.jpg` set as the full-bleed hero background.
 - [ ] ⚪ Case-study text (summary paragraph, scope list, location, year) is now optional and hidden — add later if Josh wants richer write-ups.
 
 ## How It Works
@@ -60,7 +59,6 @@ Labels: 🟢 READY (text-only) · 🟡 NEEDS PHOTO · 🔵 NEEDS JOSH · 🟣 DE
 ---
 
 ## Open items summary
-**🔵 Need from Josh:** hero photo pick · 03/04 description swap? · homeowner testimonial quote · "See More" link target
-**🟣 Our decisions:** hero split vs. full-bleed · Brand Promise placement
-**🟡 Photos to drop in:** hero + 3 featured projects
-**Note:** SEO meta description still ends with "Welcoming, experienced, trustworthy." (echoes old tagline) — flag whether to update.
+**✅ Resolved by Josh (this round):** hero = Option 1 full-image background · 03 wording rewritten · captions confirmed.
+**🔵 Still coming from Josh:** more job photos (incl. custom houses) + a doc with length-of-work / details → new gallery projects. Detail on the older photo-drop jobs (predate Tripp).
+**Note:** SEO meta description was already updated to the new tagline line.

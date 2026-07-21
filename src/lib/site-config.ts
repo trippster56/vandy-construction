@@ -15,7 +15,7 @@ export const siteConfig = {
   // "safe" → editorial, restrained, photo-forward (matches his refs:
   //   studio-mcgee.com, pillarhomes.com, gilbaneco.com)
   variant: "safe" as Variant,
-  hero: "split" as HeroLayout,
+  hero: "fullbleed" as HeroLayout,
 
   // Page ground toggle: "white" (clean editorial) or "gray" (#9A9CA1 — Josh's
   // requested background, 3.2). Flip this to compare the two versions.
@@ -38,8 +38,9 @@ export const siteConfig = {
 
   // Hero image — drop Josh's chosen "after" photo path here (e.g. "/images/hero.jpg")
   // to swap the styled placeholder for the real photo. Empty string = placeholder.
-  heroImage: "",
-  heroImageAlt: "",
+  heroImage: "/images/vandy-remodel-wide.jpg",
+  heroImageAlt:
+    "Open-concept kitchen, dining, and living area from a completed Vandy whole-home remodel",
 
   // ── Colors (per questionnaire 3.2) ──
   colors: {
