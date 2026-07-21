@@ -305,6 +305,12 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
   transition: background .25s ease, border-color .25s ease, color .25s ease;
 }
 .safe-root .btn-ghost:hover { border-color: var(--ink); }
+/* Keep CTA labels ("Get in touch →", "Contact us") on a single line. */
+.safe-root .btn-primary, .safe-root .btn-ghost { white-space: nowrap; }
+
+/* Fullbleed hero content: fill the viewport below the header so the headline
+   AND buttons are visible without scrolling; grows if the copy ever needs more. */
+.hero-fullbleed-inner { min-height: calc(100vh - 88px); }
 .safe-root .card-hover { transition: transform .35s ease; }
 .safe-root .card-hover:hover { transform: translateY(-3px); }
 .safe-root .img-hover { overflow: hidden; }
@@ -566,6 +572,13 @@ html, body { overflow-x: hidden; }
   .safe-root [style*="height:740px"], .char-root [style*="height:740px"], .bold-root [style*="height:740px"],
   .safe-root [style*="height:700px"], .char-root [style*="height:700px"], .bold-root [style*="height:700px"] {
     height: clamp(380px, 70vh, 520px) !important;
+  }
+
+  /* Safe fullbleed hero content: shrink on mobile and tighten the padding so the
+     copy hugs the edges instead of floating in the center. */
+  .hero-fullbleed-inner {
+    min-height: clamp(440px, 74vh, 560px) !important;
+    padding: 24px 20px 32px !important;
   }
 
   /* Inline maxWidth values that can squeeze text — let them breathe */

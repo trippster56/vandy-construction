@@ -43,7 +43,7 @@ export function HeroSafe({ hero }: { hero: string }) {
 
   if (hero === "fullbleed") {
     return (
-      <section className="safe-root" style={{ position: "relative", height: 720, borderTop: `1px solid var(--line)`, overflow: "hidden" }}>
+      <section className="safe-root" style={{ position: "relative", borderTop: `1px solid var(--line)`, overflow: "hidden" }}>
         {siteConfig.heroImage ? (
           <Photo
             src={siteConfig.heroImage}
@@ -66,16 +66,19 @@ export function HeroSafe({ hero }: { hero: string }) {
               "linear-gradient(180deg, rgba(16,21,61,0.45) 0%, rgba(16,21,61,0.20) 42%, rgba(16,21,61,0.80) 100%)",
           }}
         />
-        <div style={{ position: "absolute", inset: 0, padding: 56, display: "flex", flexDirection: "column", justifyContent: "space-between", color: "#fff8ef" }}>
+        {/* Content is in-flow (relative). minHeight is set in CSS against the
+            viewport so the whole hero — headline + buttons — fits without
+            scrolling, and grows if a long headline ever needs more room. */}
+        <div className="hero-fullbleed-inner" style={{ position: "relative", padding: 56, display: "flex", flexDirection: "column", justifyContent: "space-between", color: "#fff8ef" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
             <span className="mono" style={{ opacity: 0.7, letterSpacing: "0.14em" }}>Est. {siteConfig.established}</span>
             <span className="mono" style={{ opacity: 0.7, letterSpacing: "0.14em" }}>Available now</span>
           </div>
           <div>
-            <h1 style={{ fontSize: 124, lineHeight: 0.95, margin: 0, fontWeight: 400, maxWidth: 1000 }}>
+            <h1 style={{ fontSize: 100, lineHeight: 0.98, margin: "40px 0 0", fontWeight: 400, maxWidth: 1000 }}>
               {siteConfig.tagline}
             </h1>
-            <div style={{ display: "flex", gap: 16, marginTop: 48 }}>
+            <div style={{ display: "flex", gap: 16, marginTop: 40 }}>
               <Link href="/contact" className="btn-primary" style={{ background: "var(--acc)", color: "var(--accInk)" }}>Get in touch →</Link>
               <Link href="/contact" className="btn-ghost" style={{ color: "#fff8ef", borderColor: "rgba(255,255,255,0.3)" }}>Contact us</Link>
             </div>
