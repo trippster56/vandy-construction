@@ -38,9 +38,9 @@ export const siteConfig = {
 
   // Hero image — drop Josh's chosen "after" photo path here (e.g. "/images/hero.jpg")
   // to swap the styled placeholder for the real photo. Empty string = placeholder.
-  heroImage: "/images/vandy-remodel-wide.jpg",
+  heroImage: "/images/airbnb-studio.jpg",
   heroImageAlt:
-    "Open-concept kitchen, dining, and living area from a completed Vandy whole-home remodel",
+    "Finished studio apartment — kitchen, living area, and sleeping space from a completed Vandy renovation",
 
   // ── Colors (per questionnaire 3.2) ──
   colors: {

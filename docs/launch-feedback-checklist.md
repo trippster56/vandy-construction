@@ -7,7 +7,7 @@ Labels: 🟢 READY (text-only) · 🟡 NEEDS PHOTO · 🔵 NEEDS JOSH · 🟣 DE
 
 ## Hero
 - [x] 🟢 Headline → "Building with Excellence. Serving with Integrity. Impacting Lives." *(was "Welcoming. Experienced. Trustworthy.")*
-- [x] ✅ **Josh picked Option 1 — full-image background hero** (Doulaveris-style). Layout switched `split` → `fullbleed`; wired `vandy-remodel-wide.jpg` (open-concept remodel shot) as the background with a navy scrim for headline/button legibility.
+- [x] ✅ **Josh picked Option 1 — full-image background hero** (Doulaveris-style). Layout switched `split` → `fullbleed`; using `airbnb-studio.jpg` (the studio shot from the preview mock) as the background with a navy scrim for headline/button legibility.
 
 ## "What we do" section
 - [x] 🟢 Section heading → "Built Around Your Vision"
