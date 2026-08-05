@@ -21,7 +21,15 @@ export default function TestimonialsPage() {
 
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Column count follows the testimonial count so a short list stays
+              centered instead of leaving an empty slot. */}
+          <div
+            className={`grid grid-cols-1 gap-8 ${
+              HOME_TESTIMONIALS.length < 3
+                ? "md:grid-cols-2 max-w-4xl mx-auto"
+                : "md:grid-cols-2 lg:grid-cols-3"
+            }`}
+          >
             {HOME_TESTIMONIALS.map((t, index) => (
               <Card key={index} className="hover-lift">
                 <CardContent>
