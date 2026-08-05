@@ -1,24 +1,30 @@
-import { Users, Target, Heart } from "lucide-react";
+import { Users, Award, ShieldCheck, HandHeart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import PageHeader from "@/components/ui/PageHeader";
+import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 import { siteConfig } from "@/lib/site-config";
 
 const values = [
   {
-    icon: Heart,
-    title: "Welcoming",
-    description: "We make every client feel heard from the first conversation to the final walk-through.",
+    icon: ShieldCheck,
+    title: "Integrity",
+    description: "Built on honesty and trust.",
   },
   {
-    icon: Target,
-    title: "Experienced",
-    description: "Licensed, insured, and proven across residential and commercial work in the Pee Dee.",
+    icon: Award,
+    title: "Excellence",
+    description: "Quality without compromise.",
   },
   {
     icon: Users,
-    title: "Trustworthy",
-    description: "Clear communication, honest estimates, and work we stand behind in writing.",
+    title: "Service",
+    description: "People first. Always.",
+  },
+  {
+    icon: HandHeart,
+    title: "Stewardship",
+    description: "Honoring God through faithful work.",
   },
 ];
 
@@ -34,9 +40,13 @@ export default function AboutPage() {
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
-              <p className="text-muted-foreground text-sm">Project or team photo</p>
-            </div>
+            <Photo
+              src="/images/vandy-family.jpg"
+              alt="Josh Vandy with his family"
+              className="rounded-2xl border border-border aspect-[4/5]"
+              sizes="(max-width: 768px) 100vw, 45vw"
+              priority
+            />
 
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
@@ -71,7 +81,7 @@ export default function AboutPage() {
           <p className="text-muted-foreground mb-10 max-w-2xl">
             The principles that guide everything we do.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
