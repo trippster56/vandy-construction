@@ -71,6 +71,19 @@ export const siteConfig = {
     { label: "Contact", href: "/contact" },
   ],
 
+  // ── Footer "Pages" column ─────────────
+  // Nav links plus destinations we deliberately keep OUT of the top nav
+  // (the subcontractor form is for trade partners, not customers — it lives
+  // on /contact behind a tab and is linked here + via the /subcontractors alias).
+  footerLinks: [
+    { label: "About", href: "/about" },
+    { label: "Gallery", href: "/projects" },
+    { label: "Team", href: "/team" },
+    { label: "Testimonials", href: "/testimonials" },
+    { label: "Contact", href: "/contact" },
+    { label: "Subcontractors", href: "/subcontractors" },
+  ],
+
   // ── Contact Info ──────────────────────
   contact: {
     email: "info@vandyconstruction.com",
@@ -91,9 +104,12 @@ export const siteConfig = {
   },
 
   // ── Email (Resend) ───────────────────
+  // `subcontractorsTo` keeps trade-partner submissions out of Josh's main
+  // inbox once there's a second address to send them to. Falls back to `to`.
   email: {
     from: "onboarding@resend.dev",
     to: "info@vandyconstruction.com",
+    subcontractorsTo: "",
   },
 
   // ── SEO (per 8.2 target terms) ──

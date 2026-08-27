@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   MessageSquare,
   Eye,
+  HardHat,
   Settings,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ const sidebarLinks = [
 interface AdminClientProps {
   stats: {
     messages: number;
+    subcontractors: number;
   };
 }
 
@@ -31,7 +33,14 @@ export default function AdminClient({ stats }: AdminClientProps) {
       icon: MessageSquare,
       label: "Form Submissions",
       value: stats.messages.toString(),
-      note: "From contact form",
+      note: "Estimate requests",
+      color: "bg-primary",
+    },
+    {
+      icon: HardHat,
+      label: "Subcontractor Interest",
+      value: stats.subcontractors.toString(),
+      note: "From the subcontractor tab",
       color: "bg-primary",
     },
     {
@@ -73,7 +82,7 @@ export default function AdminClient({ stats }: AdminClientProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 max-w-2xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 max-w-4xl">
           {statCards.map((stat) => {
             const Icon = stat.icon;
             return (

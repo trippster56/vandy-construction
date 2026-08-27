@@ -1,15 +1,28 @@
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
-import ContactForm from "@/components/sections/ContactForm";
+import ContactForm, { type FormMode } from "@/components/sections/ContactForm";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
   title: "Contact | Vandy Construction Company",
   description:
-    "Get in touch with Vandy Construction Company in Florence, SC — request an estimate or ask a question.",
+    "Get in touch with Vandy Construction Company in Florence, SC — request an estimate, or apply as a subcontractor.",
 };
 
-export default function ContactPage() {
+/**
+ * One page, two paths. `?for=subcontractor` (used by the /subcontractors alias
+ * and the footer link) opens the form on the subcontractor tab.
+ */
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ for?: string }>;
+}) {
+  const params = await searchParams;
+  const initialMode: FormMode = params.for?.startsWith("sub")
+    ? "subcontractor"
+    : "estimate";
+
   const contactInfo = [
     { icon: Mail, label: "Email", value: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
     { icon: Phone, label: "Phone", value: siteConfig.contact.phone, href: `tel:${siteConfig.contact.phone}` },
@@ -22,7 +35,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact us"
         title="Get in Touch"
-        subtitle="Request an estimate or send us a question — we'd love to hear about your project."
+        subtitle="Homeowners and businesses can request an estimate here. Subcontractors looking for work can submit their info too."
       />
 
       <section className="py-12 md:py-16">
@@ -30,7 +43,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Lead capture — native form → /api/contact (Resend) */}
             <div className="lg:col-span-3">
-              <ContactForm />
+              <ContactForm initialMode={initialMode} />
             </div>
 
             <div className="lg:col-span-2">

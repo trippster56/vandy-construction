@@ -36,7 +36,7 @@ function SafeFooter() {
         </FooterCol>
         <FooterCol title="Pages" tone="safe-dark">
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, fontSize: 14 }}>
-            {siteConfig.navLinks.map((n) => (
+            {siteConfig.footerLinks.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="line-link">{n.label}</Link>
               </li>
@@ -108,7 +108,7 @@ function CharacterFooter() {
         <div>
           <div className="caption" style={{ color: "var(--acc)", marginBottom: 14 }}>Pages</div>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, fontSize: 14 }}>
-            {siteConfig.navLinks.map((n) => (
+            {siteConfig.footerLinks.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="und">{n.label}</Link>
               </li>
@@ -181,7 +181,7 @@ function BoldFooter() {
           <div>
             <div className="mono" style={{ color: "var(--acc)", marginBottom: 16, fontWeight: 600 }}>Pages</div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, fontSize: 14 }}>
-              {siteConfig.navLinks.map((n) => (
+              {siteConfig.footerLinks.map((n) => (
                 <li key={n.href}>
                   <Link href={n.href} className="und">{n.label}</Link>
                 </li>
