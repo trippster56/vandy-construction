@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the placeholder template, so the required var list travels with the repo
+!.env.example
 
 # playwright
 /test-results/
