@@ -43,7 +43,7 @@ export default function AboutPage() {
             <Photo
               src="/images/vandy-family.jpg"
               alt="Josh Vandy with his family"
-              className="rounded-2xl border border-border aspect-[4/5]"
+              className="rounded-2xl border border-border aspect-[3/2]"
               sizes="(max-width: 768px) 100vw, 45vw"
               priority
             />
