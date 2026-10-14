@@ -1,21 +1,17 @@
 "use client";
 
-import { useActionState, useState } from "react";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { useActionState } from "react";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "@/components/ui/input-group";
 import { signIn } from "./actions";
+import FormAlert from "./form-alert";
+import PasswordInput from "./password-input";
 
 export default function LoginForm() {
   const [state, formAction, pending] = useActionState(signIn, null);
-  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <form action={formAction} className="space-y-5" noValidate>
@@ -38,37 +34,25 @@ export default function LoginForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <InputGroup className="h-10">
-          <InputGroupInput
-            id="password"
-            name="password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            required
-            aria-invalid={state ? true : undefined}
-          />
-          <InputGroupAddon align="inline-end">
-            <InputGroupButton
-              size="icon-xs"
-              onClick={() => setShowPassword((v) => !v)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              aria-pressed={showPassword}
-            >
-              {showPassword ? <EyeOff /> : <Eye />}
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
+        <div className="flex items-baseline justify-between">
+          <Label htmlFor="password">Password</Label>
+          <Link
+            href="/admin/login/forgot"
+            className="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+          >
+            Forgot password?
+          </Link>
+        </div>
+        <PasswordInput
+          id="password"
+          name="password"
+          autoComplete="current-password"
+          required
+          aria-invalid={state ? true : undefined}
+        />
       </div>
 
-      {state?.error && (
-        <p
-          role="alert"
-          className="rounded-lg border border-destructive/20 bg-destructive/5 px-3 py-2.5 text-sm text-destructive"
-        >
-          {state.error}
-        </p>
-      )}
+      {state?.error && <FormAlert>{state.error}</FormAlert>}
 
       <Button type="submit" disabled={pending} className="h-10 w-full text-sm">
         {pending ? (
