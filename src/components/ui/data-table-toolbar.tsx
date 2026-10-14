@@ -200,41 +200,41 @@ export function DataTableToolbar({
         </div>
       )}
 
+      {hasFilters && activeCount > 0 && (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onFilterClear?.()}
+          className="text-muted-foreground order-last h-9 shrink-0 gap-1"
+        >
+          <X className="size-4" />
+          Clear
+        </Button>
+      )}
+
       {hasFilters && (
         <Popover>
-          <PopoverTrigger>
-            <div className="flex shrink-0 items-center gap-2">
+          {/* The trigger IS the Filter button — wrapping a <Button> in the
+              trigger's own <button> is invalid HTML and breaks hydration. */}
+          <PopoverTrigger
+            render={
               <Button
                 variant="outline"
                 size="sm"
                 className="h-9 shrink-0 gap-1.5"
+              />
+            }
+          >
+            <ListFilter className="size-4" />
+            Filter
+            {activeCount > 0 && (
+              <Badge
+                variant="secondary"
+                className="size-5 rounded-full px-0 text-[10px]"
               >
-                <ListFilter className="size-4" />
-                Filter
-                {activeCount > 0 && (
-                  <Badge
-                    variant="secondary"
-                    className="size-5 rounded-full px-0 text-[10px]"
-                  >
-                    {activeCount}
-                  </Badge>
-                )}
-              </Button>
-              {activeCount > 0 && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={e => {
-                    e.stopPropagation();
-                    onFilterClear?.();
-                  }}
-                  className="text-muted-foreground h-9 shrink-0 gap-1"
-                >
-                  <X className="size-4" />
-                  Clear
-                </Button>
-              )}
-            </div>
+                {activeCount}
+              </Badge>
+            )}
           </PopoverTrigger>
           <PopoverContent className="relative w-96 p-4" align="end">
             <PopoverClose className="text-muted-foreground hover:text-foreground absolute top-2 right-2 rounded-sm p-1 transition-colors">

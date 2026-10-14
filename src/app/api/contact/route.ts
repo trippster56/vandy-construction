@@ -101,18 +101,23 @@ export async function POST(req: Request) {
 
     // Save to database (skips gracefully if DATABASE_URL not set).
     // Blank optional fields become undefined so they store as NULL, not "".
+    // A failed save must not cost us the lead — log it and still send the email.
     const opt = (v: unknown) => oneLine(v) || undefined;
-    await saveContactMessage({
-      type: isSubcontractor ? "subcontractor" : "estimate",
-      name: oneLine(name),
-      company: opt(company),
-      email: oneLine(email),
-      phone: opt(phone),
-      preferredContact: opt(preferredContact),
-      trade: opt(trade),
-      licensedInsured: opt(licensedInsured),
-      message: String(message ?? "").trim() || undefined,
-    });
+    try {
+      await saveContactMessage({
+        type: isSubcontractor ? "subcontractor" : "estimate",
+        name: oneLine(name),
+        company: opt(company),
+        email: oneLine(email),
+        phone: opt(phone),
+        preferredContact: opt(preferredContact),
+        trade: opt(trade),
+        licensedInsured: opt(licensedInsured),
+        message: String(message ?? "").trim() || undefined,
+      });
+    } catch (err) {
+      console.error("Contact message save failed (email still sent):", err);
+    }
 
     // If no API key in dev, log and return success
     if (!process.env.RESEND_API_KEY) {

@@ -38,6 +38,10 @@ interface BaseProps<T> {
   pageSize?: number;
   emptyState?: React.ReactNode;
   className?: string;
+  /** Makes rows clickable (e.g. to open a detail dialog). */
+  onRowClick?: (row: T) => void;
+  /** Extra classes per row (e.g. to emphasise unread items). */
+  rowClassName?: (row: T) => string | undefined;
 }
 
 interface UncontrolledProps<T> extends BaseProps<T> {
@@ -91,6 +95,8 @@ export function PaginatedTable<T>({
   pageSize = DEFAULT_PAGE_SIZE,
   emptyState,
   className,
+  onRowClick,
+  rowClassName,
   totalCount,
   currentPage: controlledPage,
   onPageChange,
@@ -100,7 +106,6 @@ export function PaginatedTable<T>({
   const [internalPage, setInternalPage] = React.useState(1);
   const [sort, setSort] = React.useState<SortState | null>(null);
 
-  const currentPage = isControlled ? controlledPage : internalPage;
 
   const handleSort = (col: ColumnDef<T>) => {
     if (!col.sortValue) return;
@@ -127,6 +132,8 @@ export function PaginatedTable<T>({
 
   const total = isControlled ? totalCount : sortedData.length;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  // Clamp so filtering the data down never strands us on an empty page.
+  const currentPage = isControlled ? controlledPage : Math.min(internalPage, totalPages);
 
   const visibleData = isControlled
     ? sortedData
@@ -194,7 +201,11 @@ export function PaginatedTable<T>({
           </TableHeader>
           <TableBody>
             {visibleData.map(row => (
-              <TableRow key={keyExtractor(row)}>
+              <TableRow
+                key={keyExtractor(row)}
+                onClick={onRowClick ? () => onRowClick(row) : undefined}
+                className={cn(onRowClick && "cursor-pointer", rowClassName?.(row))}
+              >
                 {columns.map(col => (
                   <TableCell key={col.key} className={col.className}>
                     <div className="overflow-hidden">{col.cell(row)}</div>
