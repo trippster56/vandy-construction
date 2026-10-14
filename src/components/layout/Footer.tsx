@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
-import { SOCIAL_LABELS } from "@/data/home";
+
+// Only accounts that actually exist (siteConfig.socials) get a footer link.
+const SOCIAL_LINKS = [
+  { label: "Facebook", href: siteConfig.socials.facebook },
+  { label: "Instagram", href: siteConfig.socials.instagram },
+].filter((s) => s.href);
 
 export default function Footer() {
   const v = siteConfig.variant;
@@ -45,9 +50,9 @@ function SafeFooter() {
         </FooterCol>
         <FooterCol title="Follow along" tone="safe-dark">
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, fontSize: 14 }}>
-            {SOCIAL_LABELS.map((s) => (
-              <li key={s}>
-                <a href="#" className="line-link">{s} ↗</a>
+            {SOCIAL_LINKS.map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="line-link">{s.label} ↗</a>
               </li>
             ))}
           </ul>
@@ -118,9 +123,9 @@ function CharacterFooter() {
         <div>
           <div className="caption" style={{ color: "var(--acc)", marginBottom: 14 }}>Follow along</div>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, fontSize: 14 }}>
-            {SOCIAL_LABELS.map((s) => (
-              <li key={s}>
-                <a href="#" className="und">{s} ↗</a>
+            {SOCIAL_LINKS.map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="und">{s.label} ↗</a>
               </li>
             ))}
           </ul>
@@ -191,9 +196,9 @@ function BoldFooter() {
           <div>
             <div className="mono" style={{ color: "var(--acc)", marginBottom: 16, fontWeight: 600 }}>Follow along</div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, fontSize: 14 }}>
-              {SOCIAL_LABELS.map((s) => (
-                <li key={s}>
-                  <a href="#" className="und">{s} ↗</a>
+              {SOCIAL_LINKS.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="und">{s.label} ↗</a>
                 </li>
               ))}
             </ul>

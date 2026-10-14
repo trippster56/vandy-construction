@@ -4,10 +4,11 @@ import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 
 // Names, titles, and bios from Taylor's "Website Wording" doc.
-const team: { name: string; role: string; bio: string; photo?: string }[] = [
+const team: { name: string; role: string; bio: string; photo?: string; linkedin?: string }[] = [
   {
     name: "Josh VanderLugt",
     photo: "/images/team/josh.jpg",
+    linkedin: "https://www.linkedin.com/in/josh-vanderlugt-267a5b190/",
     role: "Owner / General Contractor",
     bio: "Josh founded Vandy Construction after years of experience in residential and commercial construction. He attended Liberty University and leads every project with integrity, clear communication, and a commitment to quality.",
   },
@@ -25,6 +26,7 @@ const team: { name: string; role: string; bio: string; photo?: string }[] = [
   },
   {
     name: "Bernaldo Reyes",
+    photo: "/images/team/bernaldo.jpg",
     role: "Field Crew",
     bio: "Bernaldo is a valued member of our field team, bringing reliability, attention to detail, and a strong work ethic to every project.",
   },
@@ -77,6 +79,16 @@ export default function TeamPage() {
                   <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
                   <p className="text-primary text-sm font-medium mb-2">{member.role}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-3 text-sm font-medium text-primary hover:underline"
+                    >
+                      LinkedIn ↗
+                    </a>
+                  )}
                 </CardContent>
               </Card>
             ))}

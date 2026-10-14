@@ -44,5 +44,3 @@ export const HOME_TICKER = [
   "Now booking 2026 projects",
   "Licensed & insured",
 ];
-
-export const SOCIAL_LABELS = ["Facebook", "Instagram", "LinkedIn"];

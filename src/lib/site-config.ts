@@ -92,9 +92,11 @@ export const siteConfig = {
     hours: "Mon–Fri · 7am–5pm",
   },
 
-  // ── Social Links (per 7: Facebook only) ──
+  // ── Social Links ──
+  // Company accounts only. Josh's personal LinkedIn lives on his Team card.
   socials: {
-    facebook: "https://www.facebook.com/profile.php?id=61573879797884",
+    facebook: "https://www.facebook.com/p/Vandy-Construction-Co-61573879797884/",
+    instagram: "https://www.instagram.com/vandyconstruction/",
   },
 
   // ── Google Business Profile (map + "Leave a review") ──  TODO: Josh
