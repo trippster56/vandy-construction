@@ -15,6 +15,17 @@ const UNREACHABLE = "Couldn't reach the sign-in service. Try again in a minute."
 const isNetworkError = (error: { code?: string } | null) =>
   String(error?.code ?? "").startsWith("NETWORK_");
 
+/**
+ * This site's absolute origin. Reset links pass through Neon's domain first,
+ * so a path alone won't do.
+ */
+async function siteOrigin() {
+  const h = await headers();
+  const host = h.get("x-forwarded-host") ?? h.get("host");
+  const proto = h.get("x-forwarded-proto") ?? (host?.startsWith("localhost") ? "http" : "https");
+  return h.get("origin") ?? `${proto}://${host}`;
+}
+
 export async function signIn(_prev: SignInState, formData: FormData): Promise<SignInState> {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
@@ -49,16 +60,10 @@ export async function requestPasswordReset(
   // Same answer whether or not the address has an account; only allowlisted
   // addresses actually get an email.
   if (isAdminEmail(email)) {
-    // The link in the email goes to Neon first, which bounces back here with
-    // ?token=… — so it needs this site's absolute origin.
-    const h = await headers();
-    const host = h.get("x-forwarded-host") ?? h.get("host");
-    const proto = h.get("x-forwarded-proto") ?? (host?.startsWith("localhost") ? "http" : "https");
-    const origin = h.get("origin") ?? `${proto}://${host}`;
-
+    // The emailed link goes to Neon, which bounces back here with ?token=….
     const { error } = await auth.requestPasswordReset({
       email,
-      redirectTo: `${origin}${LOGIN_PATH}/reset`,
+      redirectTo: `${await siteOrigin()}${LOGIN_PATH}/reset`,
     });
     if (isNetworkError(error)) return { error: UNREACHABLE, email };
     if (error) console.error("[auth] password reset request failed", error);
