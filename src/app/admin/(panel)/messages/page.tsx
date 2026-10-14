@@ -1,7 +1,9 @@
 import { getContactMessages } from "@/db/queries";
+import { requireAdmin } from "@/lib/auth/admin";
 import MessagesInbox from "./messages-inbox";
 
 export default async function MessagesPage() {
+  await requireAdmin();
   const messages = await getContactMessages();
   return (
     <>

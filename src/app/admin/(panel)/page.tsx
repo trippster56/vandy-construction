@@ -2,8 +2,10 @@ import Link from "next/link";
 import { MessageSquare, Eye, HardHat } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAdminStats } from "@/db/queries";
+import { requireAdmin } from "@/lib/auth/admin";
 
 export default async function AdminPage() {
+  await requireAdmin();
   const stats = await getAdminStats();
 
   // Per questionnaire 6.3: Josh wants traffic + form-submission visibility.

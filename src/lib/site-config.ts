@@ -99,9 +99,9 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/vandyconstruction/",
   },
 
-  // ── Google Business Profile (map + "Leave a review") ──  TODO: Josh
+  // ── Google Business Profile (map + "Leave a review") ──
   google: {
-    reviewUrl: "", // Google review link for the "Leave a review" CTA
+    reviewUrl: "https://search.google.com/local/writereview?placeid=ChIJkeMjLFVjVYgR7GLIfFcy_fc",
     mapsEmbedQuery: "1427 Old Ebenezer Road, Florence, SC 29501", // used for the map embed
   },
 
