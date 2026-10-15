@@ -33,7 +33,9 @@ export const siteConfig = {
   // so the hero subhead / SEO copy stay independent.
   footerBlurb:
     "Licensed & Insured Residential and Commercial Contractor proudly serving Florence, SC and the surrounding Pee Dee communities.",
-  url: "https://vandyconstruction.com",
+  // www is the primary domain in Vercel (the apex redirects to it), so the
+  // sitemap and robots.txt list www URLs to avoid redirect warnings in Search Console.
+  url: "https://www.vandyconstruction.com",
   logo: "/images/logo-mark.svg", // vectorized from Josh's logo (silver gradient); also logo-mark-mono.svg for single-color use
 
   // Hero image — drop Josh's chosen "after" photo path here (e.g. "/images/hero.jpg")

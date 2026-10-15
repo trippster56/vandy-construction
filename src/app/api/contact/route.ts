@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { saveContactMessage } from "@/db/queries";
 import { siteConfig } from "@/lib/site-config";
+import { oneLine, renderContactEmail } from "@/lib/contact-email";
 
 /**
  * Contact Form API Route
@@ -17,48 +18,6 @@ import { siteConfig } from "@/lib/site-config";
  * During development without a key, the route will
  * log the message and return success for testing.
  */
-
-const BRAND = "#181F58";
-const MUTED = "#63666A";
-
-/** Escape user input before it goes into the email HTML. */
-function esc(value: unknown) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-/** Collapse whitespace so user input can't inject into a subject line. */
-function oneLine(value: unknown) {
-  return String(value ?? "").replace(/\s+/g, " ").trim();
-}
-
-function row(label: string, value: unknown) {
-  return `
-    <tr>
-      <td style="padding: 8px 0; color: ${MUTED}; width: 180px;"><strong>${esc(label)}:</strong></td>
-      <td style="padding: 8px 0; color: ${BRAND};">${esc(value) || "Not provided"}</td>
-    </tr>`;
-}
-
-function emailShell(heading: string, rows: string, note?: { label: string; body: string }) {
-  return `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: ${BRAND};">${esc(heading)}</h2>
-      <table style="width: 100%; border-collapse: collapse;">${rows}</table>
-      ${
-        note
-          ? `<div style="margin-top: 16px; padding: 16px; background: #f9fafb; border-radius: 8px;">
-               <p style="color: #6b7280; margin: 0 0 8px 0;"><strong>${esc(note.label)}:</strong></p>
-               <p style="color: #111827; margin: 0; white-space: pre-wrap;">${esc(note.body)}</p>
-             </div>`
-          : ""
-      }
-    </div>`;
-}
 
 export async function POST(req: Request) {
   const resend = process.env.RESEND_API_KEY
@@ -137,29 +96,17 @@ export async function POST(req: Request) {
       ? `[Vandy Subcontractor] ${oneLine(trade)} — ${oneLine(name)}`
       : `[Vandy Construction] New inquiry from ${oneLine(name)}`;
 
-    const html = isSubcontractor
-      ? emailShell(
-          "New Subcontractor Interest",
-          [
-            row("Name", name),
-            row("Company", company),
-            row("Trade", trade),
-            row("Phone", phone),
-            row("Email", email),
-            row("Licensed & insured", licensedInsured),
-          ].join(""),
-          message ? { label: "Notes", body: message } : undefined
-        )
-      : emailShell(
-          "New Website Inquiry",
-          [
-            row("Name", name),
-            row("Email", email),
-            row("Phone", phone),
-            row("Prefers contact by", preferredContact),
-          ].join(""),
-          { label: "Message", body: message }
-        );
+    const html = renderContactEmail({
+      kind: isSubcontractor ? "subcontractor" : "estimate",
+      name,
+      email,
+      phone,
+      preferredContact,
+      company,
+      trade,
+      licensedInsured,
+      message,
+    });
 
     // Send email via Resend
     const { error } = await resend!.emails.send({
