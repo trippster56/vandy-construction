@@ -28,7 +28,7 @@ function SafeFooter() {
       <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/logo-mark.svg" alt="" aria-hidden="true" style={{ height: 56, width: "auto", marginBottom: 16 }} />
+          <img src="/images/logo-mark.svg" alt="" aria-hidden="true" width={69} height={56} style={{ height: 56, width: "auto", marginBottom: 16 }} />
           <div style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700 }}>{siteConfig.name}</div>
           <p style={{ fontSize: 13, opacity: 0.6, marginTop: 12, maxWidth: 280 }}>{siteConfig.footerBlurb}</p>
         </div>
@@ -63,9 +63,12 @@ function SafeFooter() {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          opacity: 0.45,
+          // Was opacity: 0.45 (4.17:1, fails WCAG AA at 11px). The derived
+          // token keeps the muted look at >= 4.5:1 for any --ink color.
+          color: "var(--on-ink-muted)",
           paddingTop: 24,
-          borderTop: "1px solid rgba(255,255,255,0.08)",
+          // Matches the old rule under 0.45 opacity (0.08 * 0.45).
+          borderTop: "1px solid rgba(255,255,255,0.036)",
           letterSpacing: "0.14em",
         }}
       >

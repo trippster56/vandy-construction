@@ -2,12 +2,15 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import ContactForm, { type FormMode } from "@/components/sections/ContactForm";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact | Vandy Construction Company",
+// Canonical is /contact, so the ?for=subcontractor variant isn't indexed separately.
+export const metadata = pageMetadata({
+  title: "Contact",
   description:
     "Get in touch with Vandy Construction Company in Florence, SC — request an estimate, or apply as a subcontractor.",
-};
+  path: "/contact",
+});
 
 /**
  * One page, two paths. `?for=subcontractor` (used by the /subcontractors alias
@@ -48,7 +51,7 @@ export default async function ContactPage({
 
             <div className="lg:col-span-2">
               <div className="bg-muted rounded-2xl p-8 border border-border">
-                <h3 className="text-xl font-bold text-foreground mb-6">Contact Info</h3>
+                <h2 className="text-xl font-bold text-foreground mb-6">Contact Info</h2>
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => {
                     const Icon = item.icon;
@@ -60,7 +63,7 @@ export default async function ContactPage({
                         <div>
                           <p className="text-sm font-medium text-foreground">{item.label}</p>
                           {item.href ? (
-                            <a href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                            <a href={item.href} className="text-sm text-muted-foreground hover:text-primary-text transition-colors">
                               {item.value}
                             </a>
                           ) : (

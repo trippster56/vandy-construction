@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import PageHeader from "@/components/ui/PageHeader";
 import CTABanner from "@/components/sections/CTABanner";
 import { services } from "@/data/services";
+import { pageMetadata } from "@/lib/seo";
 
 const process = [
   { n: "01", title: "Consultation", body: "We walk the site, listen to your plans, and put together a written estimate." },
@@ -10,11 +11,12 @@ const process = [
   { n: "04", title: "Handoff", body: "Final walk-through, punch list closed, warranty in writing." },
 ];
 
-export const metadata = {
-  title: "Services | Vandy Construction Company",
+export const metadata = pageMetadata({
+  title: "Services",
   description:
     "Residential and commercial construction services in Florence, SC — custom homes, renovations, commercial buildouts, site work, and design–build.",
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
@@ -27,6 +29,7 @@ export default function ServicesPage() {
 
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="sr-only">All services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
               const Icon = service.icon;
@@ -55,7 +58,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {process.map((step) => (
               <div key={step.n}>
-                <span className="text-4xl font-bold text-primary/20">{step.n}</span>
+                <span className="text-4xl font-bold text-primary-text-lg">{step.n}</span>
                 <h3 className="text-lg font-bold text-foreground mt-2 mb-2">{step.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{step.body}</p>
               </div>

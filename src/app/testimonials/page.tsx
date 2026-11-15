@@ -4,11 +4,13 @@ import PageHeader from "@/components/ui/PageHeader";
 import CTABanner from "@/components/sections/CTABanner";
 import { HOME_TESTIMONIALS } from "@/data/home";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Testimonials | Vandy Construction Company",
-  description: "What clients say about working with Vandy Construction Company in Florence, SC.",
-};
+export const metadata = pageMetadata({
+  title: "Testimonials",
+  description: "What clients say about working with Vandy Construction Company in Florence, SC, and how to leave your own review on Google.",
+  path: "/testimonials",
+});
 
 export default function TestimonialsPage() {
   return (

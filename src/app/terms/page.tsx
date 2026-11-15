@@ -1,10 +1,12 @@
 import PageHeader from "@/components/ui/PageHeader";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Terms of Service | Vandy Construction Company",
-  description: "The terms governing use of the Vandy Construction Company website.",
-};
+export const metadata = pageMetadata({
+  title: "Terms of Service",
+  description: "The terms that govern your use of the Vandy Construction Company website, its content, and its contact forms.",
+  path: "/terms",
+});
 
 // NOTE: Placeholder draft per questionnaire 10.3 ("Need both drafted").
 // Have legal counsel review before launch.
@@ -49,7 +51,7 @@ export default function TermsPage() {
             <h2 className="text-xl font-bold text-foreground mb-2">Contact</h2>
             <p>
               Questions about these terms? Email us at{" "}
-              <a href={`mailto:${siteConfig.contact.email}`} className="text-primary hover:underline">
+              <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-text hover:underline">
                 {siteConfig.contact.email}
               </a>.
             </p>

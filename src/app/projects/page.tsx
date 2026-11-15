@@ -4,6 +4,14 @@ import Placeholder from "@/components/ui/Placeholder";
 import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 import { projects } from "@/data/projects";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Project Gallery",
+  description:
+    "Before-and-after photos of recent Vandy Construction projects around Florence, SC: home and kitchen remodels, additions, porches, and commercial work.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (
@@ -16,8 +24,9 @@ export default function ProjectsPage() {
 
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="sr-only">All projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((p) => (
+            {projects.map((p, i) => (
               <Link
                 key={p.slug}
                 href={`/projects/${p.slug}`}
@@ -46,7 +55,13 @@ export default function ProjectsPage() {
                   <span>{p.meta}</span>
                 </div>
                 {p.image ? (
-                  <Photo src={p.image} alt={p.alt ?? p.title} h={300} sizes="(max-width: 1024px) 100vw, 33vw" />
+                  <Photo
+                    src={p.image}
+                    alt={p.alt ?? p.title}
+                    h={300}
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    priority={i === 0}
+                  />
                 ) : (
                   <Placeholder
                     label={p.title.toLowerCase()}

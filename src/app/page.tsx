@@ -5,6 +5,9 @@ import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
 import BrandPromise from "@/components/sections/BrandPromise";
 import CTABanner from "@/components/sections/CTABanner";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({ path: "/" });
 
 export default function Home() {
   return (

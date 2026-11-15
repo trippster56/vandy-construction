@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import PageHeader from "@/components/ui/PageHeader";
 import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
+import { pageMetadata } from "@/lib/seo";
 
 // Names, titles, and bios from Taylor's "Website Wording" doc.
 const team: { name: string; role: string; bio: string; photo?: string; linkedin?: string }[] = [
@@ -44,10 +45,11 @@ const team: { name: string; role: string; bio: string; photo?: string; linkedin?
   },
 ];
 
-export const metadata = {
-  title: "Our Team | Vandy Construction Company",
-  description: "Meet the experienced, trustworthy team behind Vandy Construction Company in Florence, SC.",
-};
+export const metadata = pageMetadata({
+  title: "Our Team",
+  description: "Meet the experienced, trustworthy team behind Vandy Construction Company in Florence, SC, from the owner to the field crew.",
+  path: "/team",
+});
 
 export default function TeamPage() {
   return (
@@ -60,8 +62,9 @@ export default function TeamPage() {
 
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="sr-only">Team members</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member) => (
+            {team.map((member, i) => (
               <Card key={member.name} className="hover-lift">
                 <CardContent>
                   {member.photo ? (
@@ -70,6 +73,7 @@ export default function TeamPage() {
                       alt={member.name}
                       className="rounded-xl aspect-[4/5] mb-5 border border-border"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={i === 0}
                     />
                   ) : (
                     <div className="bg-muted rounded-xl aspect-[4/5] mb-5 flex items-center justify-center border border-border">
@@ -77,14 +81,14 @@ export default function TeamPage() {
                     </div>
                   )}
                   <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
-                  <p className="text-primary text-sm font-medium mb-2">{member.role}</p>
+                  <p className="text-primary-text text-sm font-medium mb-2">{member.role}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
                   {member.linkedin && (
                     <a
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-3 text-sm font-medium text-primary hover:underline"
+                      className="inline-block mt-3 text-sm font-medium text-primary-text hover:underline"
                     >
                       LinkedIn ↗
                     </a>

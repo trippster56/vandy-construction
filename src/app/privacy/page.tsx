@@ -1,10 +1,12 @@
 import PageHeader from "@/components/ui/PageHeader";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Privacy Policy | Vandy Construction Company",
-  description: "How Vandy Construction Company collects, uses, and protects your information.",
-};
+export const metadata = pageMetadata({
+  title: "Privacy Policy",
+  description: "How Vandy Construction Company collects, uses, and protects the information you share through this website.",
+  path: "/privacy",
+});
 
 // NOTE: Placeholder draft per questionnaire 10.3 ("Need both drafted").
 // Have legal counsel review before launch.
@@ -50,7 +52,7 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-bold text-foreground mb-2">Contact</h2>
             <p>
               Questions about this policy? Email us at{" "}
-              <a href={`mailto:${siteConfig.contact.email}`} className="text-primary hover:underline">
+              <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-text hover:underline">
                 {siteConfig.contact.email}
               </a>.
             </p>

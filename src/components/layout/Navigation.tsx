@@ -102,7 +102,7 @@ function NavSafe() {
       >
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/logo-mark.svg" alt="" aria-hidden="true" style={{ height: 36, width: "auto" }} />
+          <img src="/images/logo-mark.svg" alt="" aria-hidden="true" width={45} height={36} style={{ height: 36, width: "auto" }} />
           <span
             style={{
               fontFamily: "var(--font-display)",

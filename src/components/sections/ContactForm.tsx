@@ -125,9 +125,9 @@ export default function ContactForm({
     return (
       <div className="bg-card rounded-2xl border border-border p-8 flex flex-col items-center text-center gap-4">
         <CheckCircle2 size={48} className="text-primary" />
-        <h3 className="text-xl font-bold text-foreground">
+        <h2 className="text-xl font-bold text-foreground">
           {isSub ? "Thanks — you're on our list." : "Thanks — we got your message."}
-        </h3>
+        </h2>
         <p className="text-muted-foreground text-sm max-w-sm">
           {isSub
             ? "We've added your info to our subcontractor list and we'll reach out when we have work that fits your trade."
@@ -142,7 +142,7 @@ export default function ContactForm({
 
   return (
     <div className="bg-card rounded-2xl border border-border p-8">
-      <h3 className="text-xl font-bold text-foreground mb-2">Connect with us</h3>
+      <h2 className="text-xl font-bold text-foreground mb-2">Connect with us</h2>
       <p className="text-muted-foreground text-sm mb-6">
         Choose the option that fits you and we&apos;ll take it from there.
       </p>

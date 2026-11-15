@@ -6,6 +6,9 @@ import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 import { projects, getProject } from "@/data/projects";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -19,10 +22,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return { title: "Project not found" };
-  return {
-    title: `${project.title} | ${siteConfig.name}`,
-    description: project.summary,
-  };
+  // `summary` is optional (kept off until Josh sends case-study copy), so fall
+  // back to the visible caption plus who built it and where (<= ~145 chars).
+  const description =
+    project.summary ?? `${project.caption} By ${siteConfig.short}, ${siteConfig.city}.`;
+  return pageMetadata({
+    title: project.title,
+    description,
+    path: `/projects/${project.slug}`,
+    image: project.image ? { url: project.image, alt: project.alt ?? project.title } : undefined,
+    type: "article",
+  });
 }
 
 export default async function ProjectDetailPage({
@@ -38,6 +48,13 @@ export default async function ProjectDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Gallery", path: "/projects" },
+          { name: project.title, path: `/projects/${project.slug}` },
+        ])}
+      />
       <section
         className="bold-root"
         style={{

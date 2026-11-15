@@ -4,6 +4,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import Photo from "@/components/ui/Photo";
 import CTABanner from "@/components/sections/CTABanner";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
 const values = [
   {
@@ -28,11 +29,12 @@ const values = [
   },
 ];
 
-export const metadata = {
-  title: "About Us | Vandy Construction Company",
+export const metadata = pageMetadata({
+  title: "About Us",
   description:
     "Founded in 2024 by Josh and Madison VanderLugt, Vandy Construction Company is a licensed and insured general contractor serving Florence, SC and the Pee Dee.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

@@ -1,0 +1,13 @@
+/**
+ * Renders schema.org structured data. Server component; data comes from
+ * src/lib/structured-data.ts. `<` is escaped so content can never close the
+ * script tag early.
+ */
+export default function JsonLd({ data }: { data: object | object[] }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
+  );
+}

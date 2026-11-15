@@ -120,6 +120,71 @@
 }
 
 /* ========================================
+   ACCESSIBLE ACCENT DERIVATIVES (WCAG AA)
+   Ported from the BaseWeb template. Derived from --acc / --primary / --ink,
+   so a brand-color change stays readable without hand-picking shades.
+     --accInk / --primary-foreground  text ON an accent fill (buttons, labels)
+     --acc-text / --primary-text      accent-colored small text on light bg (>= 4.5:1)
+     --acc-text-lg / --primary-text-lg  accent-colored display text >= 24px on light bg (>= 3:1)
+     --on-ink / --on-ink-muted        text on the dark --ink band (footer); the
+                                      muted one replaces opacity-faded labels
+   For navy (#181F58) these all resolve to the same colors as before; they only
+   change anything if the brand color moves to a lighter hue.
+   Fallbacks: the static values in :root above (older browsers).
+   ======================================== */
+
+/* Text on a fill: black or white, whichever passes. Relative-color fallback
+   picks via WCAG relative luminance (y in xyz-d65) at the 0.179 crossover. */
+:root {
+  --on-ink: #ffffff;
+}
+@supports (color: color(from red xyz-d65 calc(max(0, sign(0.17913 - y)) * 0.9505) y z)) {
+  :root {
+    --accInk: color(from var(--acc) xyz-d65 calc(max(0, sign(0.17913 - y)) * 0.9505) max(0, sign(0.17913 - y)) calc(max(0, sign(0.17913 - y)) * 1.089));
+    --primary-foreground: color(from var(--primary) xyz-d65 calc(max(0, sign(0.17913 - y)) * 0.9505) max(0, sign(0.17913 - y)) calc(max(0, sign(0.17913 - y)) * 1.089));
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --on-ink: color(from var(--ink) xyz-d65 calc(max(0, sign(0.17913 - y)) * 0.9505) max(0, sign(0.17913 - y)) calc(max(0, sign(0.17913 - y)) * 1.089));
+  }
+}
+@supports (color: contrast-color(red)) {
+  :root {
+    --accInk: contrast-color(var(--acc));
+    --primary-foreground: contrast-color(var(--primary));
+    --on-ink: contrast-color(var(--ink));
+  }
+}
+
+/* Muted text on --ink: 55% of the contrast ink mixed into the band color.
+   Close to the old `opacity: .45` footer row but >= 4.5:1 (white on navy at
+   55% is ~5.5:1; 45% opacity was 4.17:1 and failed). */
+:root {
+  --on-ink-muted: rgb(255 255 255 / 0.55);
+}
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  :root {
+    --on-ink-muted: color-mix(in srgb, var(--on-ink) 55%, var(--ink));
+  }
+}
+
+/* Accent as text: cap OKLCH lightness (0.50 small, 0.60 large) and scale
+   chroma with it so saturated hues stay in sRGB gamut instead of clipping.
+   Dark brand colors (navy) pass through as-is. */
+:root {
+  --acc-text: var(--acc);
+  --acc-text-lg: var(--acc);
+  --primary-text: var(--primary-dark);
+  --primary-text-lg: var(--primary-dark);
+}
+@supports (color: oklch(from red min(l, 0.5) c h)) {
+  :root {
+    --acc-text: oklch(from var(--acc) min(l, 0.5) calc(c * min(1, 0.5 / l)) h);
+    --acc-text-lg: oklch(from var(--acc) min(l, 0.6) calc(c * min(1, 0.6 / l)) h);
+    --primary-text: oklch(from var(--primary) min(l, 0.5) calc(c * min(1, 0.5 / l)) h);
+    --primary-text-lg: oklch(from var(--primary) min(l, 0.6) calc(c * min(1, 0.6 / l)) h);
+  }
+}
+
+/* ========================================
    TAILWIND THEME — maps utilities to vars
    ======================================== */
 
@@ -128,6 +193,8 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-text: var(--primary-text);
+  --color-primary-text-lg: var(--primary-text-lg);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

@@ -117,10 +117,30 @@ export const siteConfig = {
   },
 
   // ── SEO (per 8.2 target terms) ──
+  // `url` above is the production domain: canonical links, the sitemap, Open
+  // Graph URLs and structured data are all built from it.
   seo: {
-    title: "Vandy Construction Company | General Contractor in Florence, SC",
+    // Home page <title> (kept <= 60 chars so Google doesn't truncate it).
+    title: "Vandy Construction Company | Florence, SC General Contractor",
+    // Brand suffix for every other page: "About | Vandy Construction Company".
+    // Shorter than `name` (", LLC") so page titles stay under ~60 chars.
+    brand: "Vandy Construction Company",
+    // <= 160 chars so the search snippet isn't cut off.
     description:
-      "Licensed and insured general contractor serving Florence, SC and the surrounding Pee Dee communities. Building with excellence, serving with integrity, impacting lives.",
+      "Licensed and insured general contractor serving Florence, SC and the surrounding Pee Dee communities. Building with excellence, serving with integrity.",
+    locale: "en_US",
+    // schema.org type for the site-wide structured data (a LocalBusiness subtype).
+    schemaType: "GeneralContractor",
+    // `contact.address` split into parts for structured data (Google needs them).
+    address: {
+      streetAddress: "1427 Old Ebenezer Road",
+      addressLocality: "Florence",
+      addressRegion: "SC",
+      postalCode: "29501",
+      addressCountry: "US",
+    },
+    // schema.org form of `contact.hours` (Mon–Fri · 7am–5pm). Keep the two in sync.
+    openingHours: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:00", closes: "17:00" },
     keywords: [
       "contractor in florence sc",
       "construction florence sc",
